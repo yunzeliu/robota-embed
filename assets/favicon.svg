@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="15" fill="#0b0c0b"/><g fill="#94d82d" transform="translate(4 0) skewX(-10)"><rect x="14" y="36" width="9" height="15" rx="2"/><rect x="27" y="24" width="9" height="27" rx="2"/><rect x="40" y="12" width="9" height="39" rx="2"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">Robota-Embed</title>
+  <rect width="96" height="96" rx="22.5" fill="#0b0c0b"/>
+  <g fill="#94d82d" transform="translate(7 0) skewX(-8)">
+    <path fill-rule="evenodd" d="M20 16H62L75 29V44L61 56L78 80H59L43 57H35V80H20zM35 30V44H54L60 39V35L55 30z"/>
+  </g>
+</svg>

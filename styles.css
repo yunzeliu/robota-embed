@@ -59,11 +59,7 @@ figure { margin: 0; }
 }
 .nav-shell { width: min(calc(100% - 42px), 1440px); height: 100%; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .wordmark { display: inline-flex; align-items: center; gap: 10px; color: var(--text); font-size: 0.91rem; font-weight: 750; letter-spacing: -0.015em; text-decoration: none; }
-.wordmark-mark { position: relative; display: inline-flex; align-items: flex-end; gap: 2px; width: 19px; height: 18px; transform: skewX(-10deg); }
-.wordmark-mark i { display: block; width: 5px; border-radius: 1px; background: var(--green); }
-.wordmark-mark i:nth-child(1) { height: 7px; }
-.wordmark-mark i:nth-child(2) { height: 13px; }
-.wordmark-mark i:nth-child(3) { height: 18px; }
+.wordmark-mark { display: block; flex: 0 0 24px; width: 24px; height: 24px; object-fit: contain; }
 .nav-links { display: flex; align-items: center; gap: 27px; }
 .nav-links a { color: #c7cbc5; font-size: 0.79rem; font-weight: 650; text-decoration: none; transition: color 180ms ease; }
 .nav-links a:hover { color: var(--green-bright); }
