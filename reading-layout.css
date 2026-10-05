@@ -1,0 +1,78 @@
+/* Compact reading path; all technical figures remain available in native details. */
+.legacy-section-anchor { display: block; height: 0; scroll-margin-top: 76px; }
+/* Give the story connector its own number row; never run it through prose. */
+.story-track { --story-gap: 28px; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--story-gap); align-items: start; }
+.story-track::before { content: none; }
+.story-step { grid-template-columns: minmax(0,1fr); grid-template-rows: 40px auto; gap: 16px; min-width: 0; min-height: 0; padding: 0; }
+.story-step:not(:last-child)::after { content: ""; position: absolute; top: 20px; left: 40px; right: calc(-1 * var(--story-gap)); height: 1px; background: linear-gradient(90deg,rgba(118,185,0,.6),rgba(118,185,0,.2)); }
+.story-step > div { min-width: 0; }
+.story-step strong { display: block; line-height: 1.35; }
+.story-step p { margin-top: 10px; }
+.story-step .branch-labels { grid-column: 1; margin: 0; gap: 8px; }
+.branch-labels a { display: inline-flex; align-items: center; min-height: 34px; padding: 6px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--green-bright); font-size: .7rem; font-weight: 750; text-decoration: none; }
+.branch-labels a:hover { border-color: var(--green); background: var(--green-soft); }
+@media (max-width: 900px) {
+  .story-track { grid-template-columns: minmax(0,1fr); --story-gap: 24px; }
+  .story-step { grid-template-columns: 40px minmax(0,1fr); grid-template-rows: auto; column-gap: 16px; row-gap: 14px; }
+  .story-step:not(:last-child)::after { top: 40px; bottom: calc(-1 * var(--story-gap)); left: 19px; right: auto; width: 1px; height: auto; }
+  .story-step .branch-labels { grid-column: 2; }
+}
+.technical-details { margin-top: 22px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.02); scroll-margin-top: 78px; }
+.technical-details > summary { display: flex; align-items: center; gap: 24px; padding: 22px 24px; cursor: pointer; list-style: none; }
+.technical-details > summary::-webkit-details-marker { display: none; }
+.technical-details > summary::after { content: "+"; flex: 0 0 28px; margin-left: auto; color: var(--green-bright); font-size: 1.5rem; text-align: center; }
+.technical-details[open] > summary::after { content: "−"; }
+.technical-details > summary > span:first-child { display: grid; gap: 5px; }
+.technical-details > summary small { color: var(--green-bright); font-size: .64rem; font-weight: 750; letter-spacing: .09em; text-transform: uppercase; }
+.technical-details > summary strong { font-size: 1rem; line-height: 1.3; }
+.detail-summary-note { max-width: 290px; margin-left: auto; color: var(--muted); font-size: .74rem; line-height: 1.5; }
+.details-body { padding: 0 16px 16px; }
+.details-body.benchmark-layout { margin-top: 0; padding: 8px 24px 24px; }
+.action-takeaway { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; margin-top: 24px; }
+.action-takeaway .action-bars { margin-top: 0; }
+.action-takeaway small { display: block; margin-top: 20px; }
+.release-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+.release-grid article { min-width: 0; padding: 20px; border-radius: 12px; background: rgba(255,255,255,.035); }
+.release-grid h3 { margin: 0; font-size: .95rem; }
+.release-grid p { margin: 10px 0; color: var(--muted); font-size: .8rem; }
+.release-grid a { color: var(--green-bright); font-size: .8rem; }
+.repo-name { color: var(--text); overflow-wrap: anywhere; }
+.group-transport { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 20px 0 10px; }
+.group-transport > span { color: var(--muted-2); font-size: .7rem; }
+.group-transport > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.group-transport button { min-height: 38px; padding: 7px 15px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); color: var(--text); cursor: pointer; font-size: .74rem; }
+.group-transport button:first-child { border-color: var(--green); }
+.group-transport button:disabled { opacity: .5; cursor: default; }
+.group-transport + .media-carousel { margin-top: 10px; }
+.group-clip-nav { display: none; }
+.group-clip-nav + .media-carousel { margin-top: 10px; }
+.group-clip-nav button { padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--muted); font-size: .66rem; cursor: pointer; }
+.group-clip-nav button[aria-pressed="true"] { color: var(--green-bright); border-color: var(--green); background: var(--green-soft); }
+.evolve-media.media-carousel, #libero-demo .media-carousel { grid-template-columns: repeat(3,minmax(0,1fr)); grid-auto-flow: row; margin-right: 0; padding-right: 0; }
+.yam-media .media-frame { background: #060706; }
+.yam-media .media-frame video { object-fit: contain; }
+.yam-media .media-frame { aspect-ratio: 4 / 3; }
+.yam-media.media-carousel { grid-template-columns: repeat(2,minmax(0,1fr)); grid-auto-flow: row; margin-right: 0; padding-right: 0; }
+.yam-task { scroll-margin-top: 78px; }
+.real-robot-task .media-carousel.three-up.evidence-carousel { margin-right: 0; padding-right: 0; }
+@media (max-width: 1040px) {
+  #real-robot .group-clip-nav { display: flex; flex-wrap: wrap; gap: 6px; }
+}
+.yam-result-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin: 20px 0; color: var(--muted); font-size: .82rem; }
+.yam-result-strip strong { color: var(--green-bright); }
+@media (max-width: 760px) {
+  .action-takeaway { grid-template-columns: 1fr; gap: 24px; }
+  .technical-details > summary { padding: 19px 16px; gap: 12px; }
+  .detail-summary-note { display: none; }
+  .technical-details > summary strong { font-size: .93rem; }
+  .details-body { padding: 0 8px 8px; }
+  .details-body.benchmark-layout { padding: 8px 16px 16px; }
+  .release-grid { grid-template-columns: 1fr; }
+  .release-grid article { padding: 16px; }
+  .yam-media.media-carousel { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 88%; }
+  .evolve-media.media-carousel, #libero-demo .media-carousel { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 92%; }
+  .group-clip-nav { display: flex; flex-wrap: wrap; gap: 6px; }
+}
+@media print {
+  .group-transport { display: none; }
+}

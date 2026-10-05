@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Robota-Embed: Unified VLA Embeddings for Robot In-Context Learning and Evolution.">
+  <meta name="theme-color" content="#0b0c0b">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Robota-Embed">
+  <meta property="og:description" content="Unified VLA Embeddings for Robot In-Context Learning and Evolution.">
+  <meta property="og:url" content="https://yunzeliu.github.io/robota-embed/">
+  <meta property="og:image" content="https://yunzeliu.github.io/robota-embed/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Robota-Embed: recorded experience, robot in-context learning, and context evolution.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://yunzeliu.github.io/robota-embed/">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" href="assets/hero-montage-mobile.mp4" as="video" type="video/mp4" media="(max-width: 560px)">
+  <link rel="preload" href="assets/hero-montage-desktop.mp4" as="video" type="video/mp4" media="(min-width: 561px)">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="retrieval-viewer.css">
+  <link rel="stylesheet" href="droid-diagnostic.css">
+  <link rel="stylesheet" href="real-figures.css">
+  <link rel="stylesheet" href="contents-nav.css">
+  <link rel="stylesheet" href="reading-layout.css">
+  <link rel="stylesheet" href="benchmark-comparison.css">
+  <link rel="stylesheet" href="evolve-task-metrics.css">
+  <script src="script.js" defer></script>
+  <script src="retrieval-data.js" defer></script>
+  <script src="retrieval-viewer.js" defer></script>
+  <script src="droid-diagnostic.js" defer></script>
+  <script src="contents-nav.js" defer></script>
+  <script src="benchmark-comparison.js" defer></script>
+  <script src="evolve-task-metrics.js" defer></script>
+  <script src="reading-layout.js" defer></script>
+  <title>Robota-Embed · Unified VLA Embeddings</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="nav-shell">
+      <a class="wordmark" href="#top" aria-label="Robota-Embed home">
+        <span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Robota-Embed</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span class="sr-only">Toggle navigation</span><i></i><i></i>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#robota-embed">Robota-Embed</a>
+        <a href="#benchmark">Robota-Embed-Bench</a>
+        <a href="#embed2icl">Embed2ICL</a>
+        <a href="#embed2evolve">Embed2Evolve</a>
+        <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span data-motion-label>Pause motion</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="hero" id="top">
+      <div class="hero-frame" data-reveal>
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-montage-poster.webp" aria-label="Robota-Embed montage spanning human experience, real-robot Embed2ICL, and Embed2Evolve">
+          <source media="(max-width: 560px)" src="assets/hero-montage-mobile.mp4" type="video/mp4">
+          <source src="assets/hero-montage-desktop.mp4" type="video/mp4">
+        </video>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow"><span></span> NVIDIA Technical Report</p>
+          <h1>Robota-Embed</h1>
+          <p class="hero-subtitle">Unified VLA Embeddings for <br>Robot In-Context Learning and Evolution</p>
+          <div class="hero-actions">
+            <a class="pill pill-primary" href="assets/robota-embed-technical-report.pdf">Technical Report <span aria-hidden="true">↗</span></a>
+            <a class="pill" href="#retrieval-comparison">Explore retrieval <span aria-hidden="true">↓</span></a>
+            <a class="pill" href="#release-details">Code &amp; resources <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <div class="hero-storyline" aria-label="From physical experience to robot adaptation">
+          <span><i>01</i><b>Physical experience</b><small>Human + teleoperated</small></span>
+          <span><i>02</i><b>Embed2ICL</b><small>Retrieved robot context</small></span>
+          <span><i>03</i><b>Embed2Evolve</b><small>Memory-guided evolution</small></span>
+        </div>
+        <a class="hero-down" href="#paper-meta" aria-label="Continue to paper details"><span></span></a>
+      </div>
+    </header>
+
+    <section class="paper-meta" id="paper-meta" aria-label="Paper authors and affiliations">
+      <div class="shell meta-inner" data-reveal>
+        <div class="authors">
+          <span>Yunze Liu<sup>1,*</sup></span>,
+          <span>Jing Wang<sup>1,*</sup></span>,
+          <span>Shenrui Wu<sup>3</sup></span>,
+          <span>Wenkun He<sup>2</sup></span>,
+          <span>Guanqi Zhan<sup>1</sup></span>,
+          <span>Xianzheng Ma<sup>4</sup></span>,
+          <span>Junyu Chen<sup>1</sup></span>,
+          <span>Wenhang Ge<sup>1</sup></span>,
+          <span>Haozhan Tang<sup>5</sup></span>,
+          <span>Yuchao Gu<sup>1</sup></span>,
+          <span>Zhuoyang Zhang<sup>2</sup></span>,
+          <span>Zekai Wang<sup>3</sup></span>,
+          <span>Dantong Niu<sup>3</sup></span>,
+          <span>Zhen Dong<sup>1</sup></span>,
+          <span>Yuke Zhu<sup>1</sup></span>,
+          <span>Trevor Darrell<sup>3</sup></span>,
+          <span>Linxi Fan<sup>1</sup></span>,
+          <span>Song Han<sup>2</sup></span>,
+          <span>Han Cai<sup>1,†</sup></span>
+        </div>
+        <div class="affiliations">
+          <span><sup>1</sup>NVIDIA</span>
+          <span><sup>2</sup>MIT</span>
+          <span><sup>3</sup>UCB</span>
+          <span><sup>4</sup>Oxford</span>
+          <span><sup>5</sup>CMU</span>
+          <span class="equal"><sup>*</sup>Equal contribution</span>
+          <span><sup>†</sup>Corresponding author</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter overview-section" id="overview">
+      <div class="shell">
+        <div class="section-heading" data-reveal>
+          <div><p class="kicker">01 · Overview</p><h2>A robot should retrieve the right future.</h2></div>
+          <p>Robotic experience is abundant, but the useful context is not simply a visually similar frame. It is an interaction whose future matches what the robot is doing now.</p>
+        </div>
+
+        <div class="story-layout" data-reveal>
+          <figure class="native-figure overview-diagram overview-paper-figure" aria-label="Faithful web redraw of the paper overview figure">
+            <div class="overview-paper-flow">
+              <section class="overview-inputs" aria-label="Vision, language, and native-action inputs">
+                <article class="overview-vision-input">
+                  <div class="overview-scenes"><span><img src="assets/figures-real/overview-human.webp" alt="Recorded EgoDex human interaction" loading="lazy"><small>Human</small></span><span><img src="assets/figures-real/overview-robot.webp" alt="Recorded DROID robot interaction" loading="lazy"><small>Robot</small></span><span><img src="assets/figures-real/overview-simulation.webp" alt="Recorded LIBERO simulation interaction" loading="lazy"><small>Simulation</small></span></div>
+                  <strong>Vision</strong>
+                </article>
+                <article class="overview-language-input"><blockquote>“Pick up the bbq sauce and place it in the basket.”</blockquote><small>Recorded LIBERO instruction</small><strong>Language</strong></article>
+                <article class="overview-action-input"><img class="overview-action-plot" src="assets/figures-real/libero-query-action.svg" alt="Actual normalized ten-coordinate LIBERO query action at 3.1 seconds" loading="lazy"><strong>Native action</strong></article>
+              </section>
+              <div class="overview-input-arrows" aria-hidden="true"><i></i><i></i><i></i></div>
+              <section class="overview-model"><strong>Robota-Embed</strong></section>
+              <i class="overview-model-arrow" aria-hidden="true"></i>
+              <section class="overview-joint-vector"><strong>One joint VLA embedding</strong><div><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></section>
+              <b class="paper-branch-arrow" aria-hidden="true"></b>
+              <section class="overview-applications">
+                <article class="overview-icl-card">
+                  <header><strong>Embed2ICL</strong><span>Success rate ↑</span></header>
+                  <section class="overview-evidence-photos"><span><img src="assets/figures-real/overview-icl-training-free.webp" alt="Recorded training-free DROID reference from the paper" loading="lazy"><small>DROID reference</small></span><span><img src="assets/figures-real/overview-icl-real-robot.webp" alt="Recorded Fast-WAM Split Cup real-robot execution from the paper" loading="lazy"><small>Real-robot execution</small></span></section>
+                  <div><b>Training-free</b><small>DROID-Sim</small><span>No warm-up 47.0% <i>→</i> <strong>56.3%</strong></span></div>
+                  <div><b>Training-based</b><small>LIBERO difficult subset</small><span>Official release 86.4% <i>→</i> <strong>92.8%</strong></span></div>
+                </article>
+                <article class="overview-evolve-card">
+                  <header><strong>Embed2Evolve</strong><span>Success ↑ · tokens ↓</span></header>
+                  <section class="overview-evidence-photos"><span><img src="assets/figures-real/overview-evolve-start.webp" alt="Two-Robot Stack Cube seed 40 initial scene from the paper" loading="lazy"><small>Two-Robot Stack · start</small></span><span><img src="assets/figures-real/overview-evolve-final.webp" alt="Two-Robot Stack Cube seed 40 final scene from the report" loading="lazy"><small>Recorded execution</small></span></section>
+                  <div class="overview-evolve-mechanism"><span>Memory</span><i>↔</i><span>Harness</span><b>GPT-6 Astra</b></div>
+                  <div class="overview-evolve-score"><span>ManiSkill · Direct</span><b>24%</b><i>→</i><strong>68%</strong></div>
+                  <div class="overview-evolve-score overview-evolve-token"><span>Tokens / rollout · Direct</span><b>0.921M</b><i>→</i><strong>0.518M</strong></div>
+                </article>
+              </section>
+            </div>
+            <div class="overview-paper-evidence">
+              <section class="overview-modality-evidence">
+                <header><strong>Modality contribution</strong><span>four-domain average clip R@1 (%) ↑</span></header>
+                <div><span class="active" style="--score:94.6%"><b>VLA</b><strong>47.3</strong></span><span style="--score:40.2%"><b>VL</b><strong>20.1</strong></span><span style="--score:14.2%"><b>VA</b><strong>7.1</strong></span><span style="--score:46%"><b>LA</b><strong>23.0</strong></span></div>
+              </section>
+              <section class="overview-benchmark-evidence">
+                <header><strong>Robota-Embed-Bench</strong><span>four-domain average R@1 (%) ↑</span></header>
+                <div class="overview-result-row"><b>Clip-level</b><span>CLIP ViT-L/14 1.2</span><span>Gemini Embedding 2 25.2</span><strong>Ours 47.3</strong></div>
+                <div class="overview-result-row"><b>Episode-level</b><span>CLIP ViT-L/14 3.2</span><span>Gemini Embedding 2 48.3</span><strong>Ours 81.8</strong></div>
+              </section>
+              <section class="overview-efficiency-evidence">
+                <header><strong>Embed2Evolve efficiency vs. Direct</strong></header>
+                <div><span><small>Shared successes</small><b>Policy decisions ↓ 64.1%</b></span><span><small>Shared successes</small><b>Execution time ↓ 41.4%</b></span><span><small>All test rollouts</small><b>Policy tokens ↓ 43.7%</b></span><span><small>All test rollouts</small><b>Reference cost ↓ 41.8%</b></span></div>
+              </section>
+            </div>
+            <figcaption>Vision, language, and native action form one joint embedding. Recorded scenes illustrate the paper's source domains and applications; the instruction and action plot are a LIBERO query example. Action contribution is evaluated by fixed-model query masking. Every result retains its original comparator and evaluation scope.</figcaption>
+          </figure>
+          <div class="story-track" aria-label="Robota-Embed system story">
+            <article class="story-step">
+              <span>01</span><div><strong>Observe the interaction</strong><p>Encode the current interaction crop or frame, instruction, and native action.</p></div>
+            </article>
+            <article class="story-step">
+              <span>02</span><div><strong>Retrieve a relevant future</strong><p>Search a shared gallery for experience whose continuation fits the current interaction.</p></div>
+            </article>
+            <article class="story-step story-branch">
+              <span>03</span><div><strong>Turn experience into context</strong><p>Use retrieved experience as policy context, or grow task-local memory across attempts.</p></div>
+              <div class="branch-labels" aria-label="Downstream branches"><a href="#embed2icl">Embed2ICL</a><a href="#embed2evolve">Embed2Evolve</a></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter physis-section" id="robota-embed">
+      <span id="physis-embed" class="legacy-section-anchor" aria-hidden="true"></span>
+      <div class="shell">
+        <div class="statement" data-reveal>
+          <p class="kicker">02 · Robota-Embed</p>
+          <h2>Vision, language, and action.<br><span>One predictive retrieval space.</span></h2>
+          <p class="section-intro">Robota-Embed represents a current interaction and a recorded future continuation with normalized embeddings, while retaining each data source's native action interface.</p>
+        </div>
+
+        <figure class="native-figure recorded-retrieval-stage" data-reveal aria-label="Recorded LIBERO query and its actual ranked future clips">
+          <header class="real-figure-heading"><div><span>Inside a retrieval</span><h3>The same instruction can lead to a different future.</h3></div><span>LIBERO · recorded example</span></header>
+          <div class="recorded-stage-grid">
+            <section class="recorded-query">
+              <h4>Current interaction <span>t = 3.1 s</span></h4>
+              <div class="recorded-query-views"><span><img src="assets/retrieval/libero-hard-distractor/query_original.png" alt="Original LIBERO current frame at 3.1 seconds" loading="lazy"><small>Original frame</small></span><span><img src="assets/retrieval/libero-hard-distractor/query_sam3_crop.png" alt="Actual SAM3 crop used by Robota-Embed" loading="lazy"><small>Robota-Embed crop</small></span></div>
+              <blockquote>“Pick up the bbq sauce and place it in the basket.”</blockquote>
+              <img class="recorded-action-plot" src="assets/figures-real/libero-query-action.svg" alt="Actual normalized query action, all ten coordinates plotted on a common signed scale" loading="lazy">
+              <a class="evidence-source-link" href="assets/retrieval/libero-hard-distractor/query_action_model_input.csv" download>Recorded action values ↗</a>
+            </section>
+            <section class="recorded-retriever"><span>V · L · A</span><strong>Robota-Embed</strong><i aria-hidden="true">→</i><small>Cosine retrieval</small></section>
+            <section class="recorded-futures">
+              <article class="recorded-future correct"><header><strong>Rank 1 · exact paired future</strong><span>Same episode</span></header><video data-manual-play controls muted playsinline preload="none" poster="assets/retrieval/libero-hard-distractor/physis_top1-poster.webp" aria-label="Robota-Embed rank one exact paired future"><source src="assets/retrieval/libero-hard-distractor/physis_top1.mp4" type="video/mp4"></video></article>
+              <article class="recorded-future"><header><strong>Rank 2 · hard distractor</strong><span>Same instruction · other episode</span></header><video data-manual-play controls muted playsinline preload="none" poster="assets/retrieval/libero-hard-distractor/hard_distractor-poster.webp" aria-label="Robota-Embed rank two hard distractor from another episode"><source src="assets/retrieval/libero-hard-distractor/hard_distractor.mp4" type="video/mp4"></video></article>
+            </section>
+          </div>
+          <figcaption>Actual query inputs and ranked results from the supplied retrieval export. Each preview shows the benchmark-selected 16 frames over four seconds. <a href="#retrieval-comparison">Explore all four sources and compare retrievers ↗</a></figcaption>
+        </figure>
+
+        <div class="innovation-grid" data-reveal>
+          <article class="innovation-card"><span>01</span><h3>Predictive alignment</h3><p>Match a current interaction state to a future continuation rather than pairing static views of the same instant.</p></article>
+          <article class="innovation-card"><span>02</span><h3>Action-native retrieval</h3><p>Treat native actions as retrieval evidence alongside vision and language, preserving what the robot is physically doing.</p></article>
+          <article class="innovation-card"><span>03</span><h3>Shared heterogeneous space</h3><p>Map source-specific action formats through dedicated projectors into one normalized embedding space.</p></article>
+        </div>
+
+        <aside class="action-spotlight action-takeaway" data-reveal aria-label="Action input analysis">
+          <div>
+            <p class="panel-label">Why action matters</p>
+            <h3>Missing action hurts more than missing vision.</h3>
+            <p>At the final checkpoint, withholding action from the query lowers four-domain average clip-level R@1 from 47.33% to 20.08%; withholding vision yields 23.00%.</p>
+          </div>
+          <div>
+            <div class="action-bars" aria-label="Final-checkpoint missing-input analysis">
+              <div class="action-row"><span>Full VLA</span><i><b style="--value: 47.33%"></b></i><strong>47.33</strong></div>
+              <div class="action-row muted-action"><span>No action</span><i><b style="--value: 20.08%"></b></i><strong>20.08</strong></div>
+              <div class="action-row muted-action"><span>No vision</span><i><b style="--value: 23%"></b></i><strong>23.00</strong></div>
+            </div>
+            <small>This is an inference-time missing-input intervention on the trained model, not an independently retrained causal ablation.</small>
+          </div>
+        </aside>
+
+        <details class="technical-details" id="training-objective" data-reveal>
+          <summary><span><small>Inside Robota-Embed</small><strong>Architecture &amp; training objectives</strong></span><span class="detail-summary-note">Shared VLA space · three objective groups</span></summary>
+          <div class="details-body">
+          <figure class="native-figure objective-figure" aria-label="Robota-Embed predictive VLA embedding objective">
+            <div class="objective-architecture">
+              <section class="paper-endpoints">
+                <article class="paper-endpoint current-endpoint">
+                  <header><strong>Current query</strong><span>at t</span></header>
+                  <div class="endpoint-fields">
+                    <div class="vision-field current-vision real-endpoint-vision"><span><img src="assets/figures-real/objective-current.webp" alt="EgoDex current frame used in the original objective figure" loading="lazy"><small>Current frame</small></span><b aria-hidden="true">→</b><span><img src="assets/figures-real/objective-crop.webp" alt="Corresponding recorded SAM3 crop" loading="lazy"><small>SAM3 crop</small></span></div>
+                    <div class="language-field"><i></i><span>Instruction</span></div>
+                    <div class="action-field"><i></i><b>→</b><em>P<sub>d</sub></em><span>Action</span></div>
+                  </div>
+                </article>
+                <article class="paper-endpoint future-endpoint">
+                  <header><strong>Future target</strong><span>Next 4 s</span></header>
+                  <div class="endpoint-fields">
+                    <div class="vision-field future-vision real-endpoint-vision"><span><img src="assets/figures-real/objective-future-early.webp" alt="Early frame of the recorded paired EgoDex future" loading="lazy"></span><b aria-hidden="true">…</b><span><img src="assets/figures-real/objective-future-late.webp" alt="Later frame of the same recorded future" loading="lazy"></span><small>Future video · 16 frames / 4 s</small></div>
+                    <div class="language-field"><i></i><span>Same text</span></div>
+                    <div class="action-field"><i></i><b>→</b><em>P<sub>d</sub></em><span>Actions · native rate</span></div>
+                  </div>
+                </article>
+                <div class="endpoint-time-link"><i></i><span>same recorded continuation</span></div>
+              </section>
+              <b class="architecture-arrow dual-lane-arrow" aria-hidden="true"></b>
+              <section class="paper-transformer">
+                <header><strong>Shared VLA Transformer</strong><span>shared θ + video tokenizer</span></header>
+                <div class="transformer-paper-lane query-transformer-lane"><em>Query lane</em><span class="paper-vla-tokens"><i></i><i></i><i></i></span><b></b><span class="transformer-mesh"><i></i><i></i><i></i></span></div>
+                <div class="adapter-badges"><span>Query adapter A<sub>q</sub></span><i>shared θ</i><span>Target adapter A<sub>k</sub></span></div>
+                <div class="transformer-paper-lane target-transformer-lane"><em>Target lane</em><span class="paper-vla-tokens"><i></i><i></i><i></i></span><b></b><span class="transformer-mesh"><i></i><i></i><i></i></span></div>
+              </section>
+              <b class="architecture-arrow dual-lane-arrow" aria-hidden="true"></b>
+              <section class="paper-embedding-head">
+                <header><strong>Embedding head</strong><span>Shared projection</span></header>
+                <div class="head-paper-row"><i>Time mean</i><b></b><i>LN + Linear</i><b></b><i>L2</i><b></b><strong>q</strong></div>
+                <div class="head-paper-row"><i>Time mean</i><b></b><i>LN + Linear</i><b></b><i>L2</i><b></b><strong>k</strong></div>
+                <small>one L2-normalized 1024-D vector per endpoint</small>
+              </section>
+              <b class="architecture-arrow dual-cosine-arrow" aria-hidden="true"></b>
+              <section class="paper-cosine"><span>Cosine similarity</span><strong>cos(q, k)</strong></section>
+            </div>
+            <div class="objective-training-bus" aria-hidden="true"><span>all three objective groups jointly train the shared embedding model</span><i></i></div>
+            <div class="objective-losses objective-losses-faithful">
+              <article class="alignment-loss-panel">
+                <header><span>ℒ<sub>align</sub></span><strong>Predictive retrieval alignment</strong></header>
+                <div class="alignment-loss-body">
+                  <div class="bidirectional-pair"><i>q</i><b>⇄</b><i>k</i><small>bidirectional</small></div>
+                  <div class="validity-matrix-wrap"><span>Future clips</span><div class="validity-matrix"><i class="paired"></i><i class="ignored"></i><i class="conflict"></i><i class="ignored"></i><i class="conflict"></i><i class="paired"></i><i class="ignored"></i><i class="ignored"></i><i class="ignored"></i><i class="ignored"></i><i class="paired"></i><i class="conflict"></i><i class="ignored"></i><i class="conflict"></i><i class="ignored"></i><i class="paired"></i></div><small>Queries</small></div>
+                  <div class="validity-legend"><span><i class="paired"></i>Paired</span><span><i class="conflict"></i>Conflict</span><span><i class="ignored"></i>Ignored</span></div>
+                </div>
+              </article>
+              <article class="grounding-loss-panel">
+                <header><span>ℒ<sub>ground</sub></span><strong>Multimodal grounding and discrimination</strong></header>
+                <div class="grounding-loss-body">
+                  <section class="swap-comparison"><b>Modality swaps</b><div class="swap-row intact"><span><i>L</i><i>V</i><i>A</i></span><em>→ s(q, k<sup>+</sup>)</em><strong></strong></div><div class="swap-margin"><i></i><span>margin m</span><i></i></div><div class="swap-row swapped"><span><i>L</i><i>V</i><i>A′</i></span><em>→ s(q′, k<sup>+</sup>)</em><strong></strong></div><small>one query modality changes; the paired target k<sup>+</sup> stays fixed</small></section>
+                  <section class="hard-conflict"><b>Hard conflicts</b><div><i class="query-dot">q</i><i></i><i class="hardest"></i><i></i><i></i></div><small>class-wise maximum-cosine task/object/action conflict after validity masking</small></section>
+                </div>
+              </article>
+              <article class="regularization-loss-panel">
+                <header><span>ℒ<sub>reg</sub></span><strong>Representation regularization</strong></header>
+                <b>Center + spread</b>
+                <div class="regularization-direction"><div class="scatter-cloud collapsed"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>→</span><div class="scatter-cloud spread"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+                <small>illustrative direction: near-zero centers, non-collapsed variance and effective rank</small>
+              </article>
+            </div>
+            <figcaption>Current and future frames are taken from the same EgoDex pair as the paper figure. The two endpoints take independent forward paths through shared Transformer and projection parameters, with separate endpoint adapters. The matrix, modality-swap scores, and regularization sketches illustrate the three objectives; they are not measured retrieval results.</figcaption>
+          </figure>
+          </div>
+        </details>
+
+        <details class="technical-details" id="training-corpus" data-reveal>
+          <summary><span><small>Data preparation</small><strong>Multi-source training corpus</strong></span><span class="detail-summary-note">1,695,684 accepted pairs · four sources</span></summary>
+          <div class="details-body">
+          <figure class="native-figure curation-figure" aria-label="Multi-source training-data curation pipeline">
+            <div class="curation-source-header">
+              <div><strong>Multi-source episodes</strong><span>EgoDex</span><span>DROID</span><span>LIBERO</span><span>RoboMIND–Franka-dual</span></div>
+              <i></i><b>Split by episode</b>
+            </div>
+            <div class="curation-flow curation-flow-faithful">
+              <article class="anchor-stage"><span>01</span><strong>Dense anchors</strong><div class="anchor-track"><i></i><i></i><i></i><i></i><b class="current-marker"><span>Current t</span></b><em><span>Future 4 s</span></em></div><small>Dense time anchors</small></article>
+              <article class="localization-stage"><span>02</span><strong>Object localization</strong><img class="curation-photo" src="assets/figures-real/curation-localization.webp" alt="Recorded source image and localization from the paper's curation example" loading="lazy"><small>Task phrase → SAM3</small></article>
+              <article class="zoom-stage"><span>03</span><strong>Object zoom</strong><img class="curation-photo" src="assets/figures-real/curation-zoom.webp" alt="Actual object crop from the same curation example" loading="lazy"><small>320 × 192 crop</small></article>
+              <article class="quality-stage"><span>04</span><strong>Quality gate</strong><b>Qwen3-VL</b><div class="quality-checks"><i>Visible</i><i>Task-relevant</i><i>Separable</i><i>Unoccluded</i></div></article>
+              <article class="pair-stage"><span>05</span><strong>Predictive pair</strong><div><b>Current query</b><small>text · image · action</small><b>Future target</b><small>text · video · action</small></div></article>
+            </div>
+            <div class="curation-output"><span>Accepted anchor-level pairs</span><i aria-hidden="true"></i><strong>1,695,684</strong></div>
+            <figcaption>Episodes are split before dense anchoring. Filtering uses only the instruction and current observations; each accepted within-source anchor is paired with the strictly future 4 s, comprising 16 video frames and native-rate actions. Sources are sampled equally during training.</figcaption>
+          </figure>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="chapter benchmark-section" id="benchmark">
+      <div class="shell">
+        <div class="section-heading" data-reveal>
+          <div><p class="kicker">03 · Robota-Embed-Bench</p><h2>Evaluate every source in one gallery.</h2></div>
+          <p>Robota-Embed-Bench combines human, simulated, and real-robot experience while preserving a single retrieval protocol.</p>
+        </div>
+
+        <div class="benchmark-metrics" data-reveal aria-label="Robota-Embed-Bench summary">
+          <article><strong><span data-count="4000">4000</span></strong><span>queries</span></article>
+          <article><strong><span data-count="8000">8000</span></strong><span>gallery entries</span></article>
+          <article><strong><span data-count="47.33">47.33</span>%</strong><span>four-domain average clip R@1</span></article>
+          <article><strong><span data-count="81.77">81.77</span>%</strong><span>four-domain average episode R@1</span></article>
+        </div>
+
+        <div id="benchmark-comparison"><noscript><p>Read the full model comparison in the <a href="assets/robota-embed-technical-report.pdf">technical report</a>.</p></noscript></div>
+
+        <details class="technical-details" id="benchmark-protocol" data-reveal>
+          <summary><span><small>Evaluation protocol</small><strong>Four sources, one shared gallery</strong></span><span class="detail-summary-note">Exact clips and episode identity are scored separately</span></summary>
+          <div class="details-body benchmark-layout">
+          <div class="benchmark-copy">
+            <p class="panel-label">Robota-Embed-Bench</p>
+            <h3>Four sources, one shared gallery.</h3>
+            <p>The evaluation contains 3,200 source-scoped query episodes and an 8,000-window gallery manifest. Exact clip positives and episode-level alternatives are evaluated separately.</p>
+            <div class="source-pills" aria-label="Benchmark sources"><span>EgoDex</span><span>DROID</span><span>LIBERO</span><span>RoboMIND–Franka-dual</span></div>
+          </div>
+          <figure class="native-figure benchmark-source-figure" aria-label="Robota-Embed-Bench source domains and shared-gallery retrieval protocol">
+            <div class="benchmark-source-grid benchmark-source-grid-faithful">
+              <article>
+                <header><strong>EgoDex</strong><span>Human experience foundation</span></header>
+                <div class="benchmark-source-media"><img src="assets/bench-egodex-query.png" alt="Recorded EgoDex query crop"><i aria-hidden="true"></i><img src="assets/bench-egodex-future.png" alt="Recorded EgoDex future clip frame"></div>
+                <div class="benchmark-source-time"><span>Query at t</span><b aria-hidden="true"></b><span>Future 4-s clip</span></div>
+                <p>Unwrap a chickenburger from foil</p><small>V / L / embodiment-native action</small><footer>1,000 queries / 800 episodes</footer>
+              </article>
+              <article>
+                <header><strong>DROID</strong><span>Training-free ICL domain</span></header>
+                <div class="benchmark-source-media"><img src="assets/bench-droid-query.png" alt="Recorded DROID query crop"><i aria-hidden="true"></i><img src="assets/bench-droid-future.png" alt="Recorded DROID future clip frame"></div>
+                <div class="benchmark-source-time"><span>Query at t</span><b aria-hidden="true"></b><span>Future 4-s clip</span></div>
+                <p>Move the maroon cloth to the left</p><small>V / L / embodiment-native action</small><footer>1,000 queries / 800 episodes</footer>
+              </article>
+              <article>
+                <header><strong>LIBERO</strong><span>Training-based ICL domain</span></header>
+                <div class="benchmark-source-media"><img src="assets/bench-libero-query.png" alt="Recorded LIBERO query crop"><i aria-hidden="true"></i><img src="assets/bench-libero-future.png" alt="Recorded LIBERO future clip frame"></div>
+                <div class="benchmark-source-time"><span>Query at t</span><b aria-hidden="true"></b><span>Future 4-s clip</span></div>
+                <p>Put cream cheese and butter in the basket</p><small>V / L / embodiment-native action</small><footer>1,000 queries / 800 episodes</footer>
+              </article>
+              <article>
+                <header><strong>RoboMIND–Franka-dual</strong><span>Dual-arm real-robot coverage</span></header>
+                <div class="benchmark-source-media"><img src="assets/bench-robomind-query.png" alt="Recorded RoboMIND Franka-dual query crop"><i aria-hidden="true"></i><img src="assets/bench-robomind-future.png" alt="Recorded RoboMIND Franka-dual future clip frame"></div>
+                <div class="benchmark-source-time"><span>Query at t</span><b aria-hidden="true"></b><span>Future 4-s clip</span></div>
+                <p>Close the drawer with the right arm</p><small>V / L / embodiment-native action</small><footer>1,000 queries / 800 episodes</footer>
+              </article>
+            </div>
+            <section class="benchmark-protocol" aria-label="Shared-gallery evaluation">
+              <h4>Shared-gallery evaluation</h4>
+              <div class="benchmark-protocol-flow">
+                <article class="benchmark-query-node"><strong>Current-state queries</strong><b>4,000 queries · 3,200 episodes</b><small>text + SAM3 zoom + current action</small></article>
+                <i class="benchmark-flow-arrow" aria-hidden="true"></i>
+                <article class="benchmark-gallery-node"><strong>8,000-window gallery manifest</strong><b>4 × (1,000 paired target clips + 1,000 nearby same-episode clips)</b><small>target: same text + 16-frame future video + future action</small></article>
+                <i class="benchmark-flow-arrow" aria-hidden="true"></i>
+                <div class="benchmark-relevance-nodes">
+                  <article><span><strong>Clip-level</strong><b>unique positive</b></span><small>the uniquely paired future 4-s window</small></article>
+                  <article><span><strong>Episode-level</strong><b>multiple positives</b></span><small>any indexed window from the same source-scoped episode</small></article>
+                </div>
+              </div>
+            </section>
+            <figcaption>The gallery spans all four sources. Ranking uses cosine similarity on L2-normalized embeddings without reranking; clip- and episode-level relevance are evaluated separately.</figcaption>
+          </figure>
+        </div>
+
+        </details>
+
+        <div class="retrieval-lab retrieval-explorer" id="retrieval-comparison" data-reveal>
+          <div class="comparison-heading">
+            <span>Inside the retrieval</span>
+            <p>Four final-checkpoint examples: a shared success, a temporal near-miss, a hard distractor, and an identity failure.</p>
+          </div>
+          <div class="retrieval-protocol-strip"><span>Robota-Embed · step 26,275</span><span>Raw cosine ranking</span><span>16 sampled frames / 4 s</span></div>
+          <div class="retrieval-case-tabs" role="tablist" aria-label="Retrieval case" data-retrieval-tabs>
+            <button id="retrieval-tab-0" type="button" role="tab" aria-selected="true" aria-controls="retrieval-case-panel" tabindex="0"><b>EgoDex</b><span>Exact hit</span></button>
+            <button id="retrieval-tab-1" type="button" role="tab" aria-selected="false" aria-controls="retrieval-case-panel" tabindex="-1"><b>DROID</b><span>Temporal near-miss</span></button>
+            <button id="retrieval-tab-2" type="button" role="tab" aria-selected="false" aria-controls="retrieval-case-panel" tabindex="-1"><b>LIBERO</b><span>Hard distractor</span></button>
+            <button id="retrieval-tab-3" type="button" role="tab" aria-selected="false" aria-controls="retrieval-case-panel" tabindex="-1"><b>RoboMIND</b><span>Failure boundary</span></button>
+          </div>
+          <div id="retrieval-case-panel" role="tabpanel" aria-labelledby="retrieval-tab-0" tabindex="0"></div>
+          <noscript><p>Enable JavaScript to explore the four recorded query and retrieval comparisons. The technical report contains the complete benchmark results.</p></noscript>
+          <p class="retrieval-scope">Selected qualitative examples, not an estimate of benchmark accuracy. All four queries are in the benchmark test partition; the gallery includes mixed source splits. No reranking.</p>
+          <details class="retrieval-protocol-details"><summary>How to read this comparison</summary><p>Gemini and Omni receive the original current image and instruction. Robota-Embed receives the recorded SAM3 crop, instruction, and synchronized native action. Each video visualizes 16 selected future frames over four seconds; it is not a native-frame-rate recording. Playback aligns clip-relative time, not absolute timestamps across episodes.</p><p>“Paired clip rank” is the rank of the exact recorded future associated with the query. A different window from the same episode counts as an episode hit, but not an exact clip hit. Scores from different embedding models are not compared.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter icl-section" id="embed2icl">
+      <div class="shell">
+        <div class="section-heading" data-reveal>
+          <div><p class="kicker">04 · Embed2ICL</p><h2>Retrieve context, then act.</h2></div>
+          <p>Embed2ICL turns retrieved physical experience into the native conditioning interface of training-free and training-based robot policies.</p>
+        </div>
+
+        <div class="panel-split icl-intro" data-reveal>
+          <div class="panel-copy">
+            <p class="panel-label">Embedding-guided in-context learning</p>
+            <h3>One retriever, two policy interfaces.</h3>
+            <p>A training-free path initializes DreamZero's visual cache with a selected reference. A training-based path conditions Fast-WAM on cached Context Tokens from the retrieved demonstration.</p>
+            <div class="inline-results"><span><strong>47.0% → 56.3%</strong>DROID-Sim · 3-task mean</span><span><strong>86.4% → 92.8%</strong>LIBERO · 5-task difficult-subset mean</span></div>
+            <div class="icl-evidence-links" aria-label="Explore Embed2ICL evidence"><a href="#real-robot">Real robot ↗</a><a href="#libero-demo">LIBERO ↗</a><a href="#droid-diagnostic">DROID-Sim ↗</a></div>
+          </div>
+          <figure class="native-figure icl-figure" aria-label="Embed2ICL training-free and training-based policy interfaces">
+            <div class="icl-framework">
+              <section class="icl-foundation">
+                <h4>Robot query</h4>
+                <div class="icl-vla"><i>V</i><i>L</i><i>A</i></div>
+                <b class="icl-down-arrow" aria-hidden="true"></b>
+                <strong>Robota-Embed</strong>
+                <div class="icl-vector" aria-label="retrieval embedding vector"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <b class="icl-down-arrow" aria-hidden="true"></b>
+                <span>Cosine retrieval</span>
+                <b class="icl-up-arrow" aria-hidden="true"></b>
+                <small>Indexed experience</small>
+              </section>
+              <div class="icl-fork" aria-label="Cosine retrieval branches to two policy interfaces"><i></i><b></b><b></b><span>Two policy interfaces</span></div>
+              <div class="icl-policy-lanes">
+                <section class="icl-policy-lane training-free-lane">
+                  <h4>Training-free</h4>
+                  <div class="icl-lane-flow">
+                    <article><strong>DROID top-k</strong><span>Reranking Agent</span></article>
+                    <b class="icl-arrow" aria-hidden="true"></b>
+                    <article class="reference-node"><strong>Reference video</strong><div class="icl-reference-frames"><img src="assets/figures-real/icl-droid-reference-early.webp" alt="Early frame of the paper's selected DROID reference" loading="lazy"><img src="assets/figures-real/icl-droid-reference-late.webp" alt="Later frame of the same DROID reference" loading="lazy"></div><span>4 s</span></article>
+                    <b class="icl-arrow" aria-hidden="true"></b>
+                    <article><strong>Visual KV cache</strong><span>Warm-up</span></article>
+                    <b class="icl-arrow" aria-hidden="true"></b>
+                    <article><strong>DreamZero</strong><span>Frozen policy</span></article>
+                  </div>
+                  <small>Only the selected video initializes the cache; live observations update the rolling cache.</small>
+                </section>
+                <section class="icl-policy-lane training-based-lane">
+                  <h4>Training-based</h4>
+                  <div class="icl-lane-flow">
+                    <article><strong>EgoDex</strong><img class="icl-human-frame" src="assets/figures-real/icl-egodex-reference.webp" alt="Recorded human reference used in the paper's training-based framework" loading="lazy"><span>Top-1</span></article>
+                    <b class="icl-arrow" aria-hidden="true"></b>
+                    <article class="context-token-node"><strong>Load cached</strong><span>Context Tokens</span><small>32 × 1024 tokens + context mask</small></article>
+                    <b class="icl-arrow" aria-hidden="true"></b>
+                    <article><strong>Prefilling</strong><span>Native cross-attn.</span><small>width adapter</small></article>
+                    <b class="icl-arrow" aria-hidden="true"></b>
+                    <article><strong>Fast-WAM</strong><span>Fine-tuned policy</span></article>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <figcaption>Recorded reference frames are the same as in the paper's framework figure. The selected DROID video warms DreamZero's visual cache; independently cached Context Tokens and their mask condition Fast-WAM through native cross-attention. Retrieval embeddings are used for selection, not as policy Context Tokens.</figcaption>
+          </figure>
+        </div>
+
+        <div class="content-block real-robot-block" id="real-robot" data-reveal>
+          <div class="comparison-heading real-robot-heading">
+            <span>Training-based · Real robot</span>
+            <p>Retrieved experience and selected Fast-WAM archive rollouts, grouped by task and episode index.</p>
+          </div>
+
+          <section class="real-robot-task" aria-labelledby="pick-fruit-task-title">
+            <header class="task-evidence-header">
+              <div><span>Pick Fruit</span><strong id="pick-fruit-task-title">Two arms retrieve and place fruit into the center basket.</strong></div>
+              <div class="task-progress-chip" aria-label="Pick Fruit mean normalized task progress improves from 75 percent to 79.17 percent">
+                <small>Mean normalized task progress · 12 rollouts / condition</small><span><b>No ICL</b><strong>75.00%</strong><i>→</i><b>Embed2ICL</b><strong>79.17%</strong></span>
+              </div>
+            </header>
+            <div class="media-carousel three-up evidence-carousel" data-carousel tabindex="0" aria-label="Pick Fruit retrieved reference and same-index Fast-WAM archive rollouts">
+              <article class="media-card">
+                <div class="media-frame"><video data-manual-play muted loop playsinline preload="none" controls poster="assets/pick-fruit-reference-poster.webp"><source src="assets/pick-fruit-reference.mp4" type="video/mp4"></video><span class="media-badge">Retrieved reference</span></div>
+                <div class="media-copy"><span>Human experience</span><strong>Reference selected for Pick Fruit</strong></div>
+              </article>
+              <article class="media-card">
+                <div class="media-frame"><video data-manual-play muted loop playsinline preload="none" controls poster="assets/fastwam-pick-fruit-baseline-e0009-poster.webp"><source src="assets/fastwam-pick-fruit-baseline-e0009.mp4" type="video/mp4"></video><span class="media-badge">No ICL</span></div>
+                <div class="media-copy"><span>Archive episode 0009</span><strong>Fast-WAM baseline rollout</strong></div>
+              </article>
+              <article class="media-card featured">
+                <div class="media-frame"><video data-manual-play muted loop playsinline preload="none" controls poster="assets/fastwam-pick-fruit-embed2icl-e0009-poster.webp"><source src="assets/fastwam-pick-fruit-embed2icl-e0009.mp4" type="video/mp4"></video><span class="media-badge">Embed2ICL</span></div>
+                <div class="media-copy"><span>Archive episode 0009</span><strong>Prefilling rollout with retrieved context</strong></div>
+              </article>
+            </div>
+            <p class="task-evidence-note">Same-index archive examples; initial states are not certified identical. The reported progress means come from the 12-rollout evaluation, not these selected clips.</p>
+          </section>
+
+          <section class="real-robot-task" aria-labelledby="split-cup-task-title">
+            <header class="task-evidence-header">
+              <div><span>Split Cup</span><strong id="split-cup-task-title">One hand stabilizes the stack while the other separates a cup.</strong></div>
+              <div class="task-progress-chip" aria-label="Split Cup mean normalized task progress improves from 66.67 percent to 87.50 percent">
+                <small>Mean normalized task progress · 12 rollouts / condition</small><span><b>No ICL</b><strong>66.67%</strong><i>→</i><b>Embed2ICL</b><strong>87.50%</strong></span>
+              </div>
+            </header>
+            <div class="media-carousel three-up evidence-carousel" data-carousel tabindex="0" aria-label="Split Cup retrieved reference and same-index Fast-WAM archive rollouts">
+              <article class="media-card">
+                <div class="media-frame"><video data-manual-play muted loop playsinline preload="none" controls poster="assets/split-cup-reference-poster.webp"><source src="assets/split-cup-reference.mp4" type="video/mp4"></video><span class="media-badge">Retrieved reference</span></div>
+                <div class="media-copy"><span>Human experience</span><strong>Reference selected for Split Cup</strong></div>
+              </article>
+              <article class="media-card">
+                <div class="media-frame"><video data-manual-play muted loop playsinline preload="none" controls poster="assets/fastwam-split-cup-baseline-t1-e0002-poster.webp"><source src="assets/fastwam-split-cup-baseline-t1-e0002.mp4" type="video/mp4"></video><span class="media-badge">No ICL</span></div>
+                <div class="media-copy"><span>Trial 1 · episode 0002</span><strong>Fast-WAM baseline archive rollout</strong></div>
+              </article>
+              <article class="media-card featured">
+                <div class="media-frame"><video data-manual-play muted loop playsinline preload="none" controls poster="assets/fastwam-split-cup-embed2icl-e0002-poster.webp"><source src="assets/fastwam-split-cup-embed2icl-e0002.mp4" type="video/mp4"></video><span class="media-badge">Embed2ICL</span></div>
+                <div class="media-copy"><span>Archive episode 0002</span><strong>Prefilling rollout with retrieved context</strong></div>
+              </article>
+            </div>
+            <p class="task-evidence-note">Same-index archive examples, with no-ICL trial 1 shown. Initial states are not certified identical; the reported means use the full 12-rollout evaluation.</p>
+          </section>
+        </div>
+
+          <section class="real-robot-task yam-task" id="yam-demo" aria-labelledby="yam-task-title">
+            <header class="task-evidence-header">
+              <div><span>Banana-to-Bowl · DreamZero / YAM</span><strong id="yam-task-title">Retrieved video context transfers to the YAM robot.</strong></div>
+              <div class="task-progress-chip" aria-label="Banana-to-Bowl mean task progress improves from 21.7 to 40.0 points on a zero to one hundred scale">
+                <small>Mean task progress · 0–100 · 12 trials / condition</small><span><b>No ICL</b><strong>21.7</strong><i>→</i><b>Embed2ICL</b><strong>40.0</strong></span>
+              </div>
+            </header>
+            <div class="media-carousel two-up evidence-carousel yam-media" data-carousel tabindex="0" aria-label="Banana-to-Bowl retrieved DROID reference and selected YAM execution">
+              <article class="media-card">
+                <div class="media-frame"><video data-manual-play muted playsinline preload="none" controls poster="assets/yam-banana-reference-poster.png" aria-label="Four-second banana-to-bowl DROID reference, one exterior camera"><source src="assets/yam-banana-reference.mp4" type="video/mp4"></video><span class="media-badge">Retrieved reference</span></div>
+                <div class="media-copy"><span>DROID · episode 061652 · 4 s</span><strong>Recorded banana placement into a bowl</strong></div>
+              </article>
+              <article class="media-card featured">
+                <div class="media-frame"><video data-manual-play muted playsinline preload="none" controls poster="assets/yam-banana-embed2icl-poster.png" aria-label="Selected full-length DreamZero YAM execution with retrieved video context, single top camera"><source src="assets/yam-banana-embed2icl.mp4" type="video/mp4"></video><span class="media-badge">Embed2ICL · YAM</span></div>
+                <div class="media-copy"><span>Single top camera · original speed</span><strong>Visual-cache conditioning with no additional policy training</strong></div>
+              </article>
+            </div>
+            <p class="task-evidence-note">Both evaluation conditions share the same YAM-adapted DreamZero policy. Progress is cumulative stage credit on a 0–100 scale; binary success rises separately from 0.0% to 16.7%. Results use 12 trials per condition. These full-length reference and execution clips are selected qualitative examples, not a paired baseline comparison or an estimate of success frequency.</p>
+          </section>
+
+        <div class="content-block" id="libero-demo" data-reveal>
+          <div class="comparison-heading">
+            <span>Training-based · LIBERO goal task G3</span>
+            <p>Retrieved reference, official-release rollout, and Embed2ICL prefilling rollout.</p>
+          </div>
+          <div class="media-carousel three-up" data-carousel tabindex="0" aria-label="LIBERO G3 qualitative comparison">
+            <article class="media-card">
+              <div class="media-frame"><video muted loop playsinline preload="none" controls poster="assets/libero-g3-reference-poster.webp"><source src="assets/libero-g3-reference.mp4" type="video/mp4"></video><span class="media-badge">Retrieved reference</span></div>
+              <div class="media-copy"><span>Context</span><strong>Experience retrieved for G3</strong></div>
+            </article>
+            <article class="media-card">
+              <div class="media-frame"><video muted loop playsinline preload="none" controls poster="assets/libero-g3-baseline-poster.webp"><source src="assets/libero-g3-baseline.mp4" type="video/mp4"></video><span class="media-badge">Official release</span></div>
+              <div class="media-copy"><span>Baseline · failure</span><strong>Official-release rollout</strong></div>
+            </article>
+            <article class="media-card featured">
+              <div class="media-frame"><video muted loop playsinline preload="none" controls poster="assets/libero-g3-embed2icl-poster.webp"><source src="assets/libero-g3-embed2icl.mp4" type="video/mp4"></video><span class="media-badge">Embed2ICL</span></div>
+              <div class="media-copy"><span>Prefilling · success</span><strong>Retrieved-context rollout</strong></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="content-block droid-diagnostic" id="droid-diagnostic" data-droid-diagnostic data-reveal>
+          <div class="comparison-heading">
+            <span>Training-free · DROID-Sim</span>
+            <p>Explore reference-conditioned rollouts across three simulation tasks.</p>
+          </div>
+          <div class="droid-diagnostic-intro">
+            <p class="panel-label">Reference-conditioned rollouts</p>
+            <h3>Watch context enter the rollout.</h3>
+            <p>Compare no-warm-up and retrieved-reference rollouts across three DROID-Sim tasks, with synchronized playback of the external and wrist cameras.</p>
+            <div class="droid-protocol-tags"><span>DreamZero-DROID · frozen policy</span><span>4 s reference</span><span>Three camera views</span><span>30 s · original speed</span></div>
+          </div>
+          <div class="droid-task-tabs" role="tablist" aria-label="DROID-Sim task" data-droid-tabs>
+            <button type="button" id="droid-tab-cube" role="tab" aria-selected="true" aria-controls="droid-panel-cube" tabindex="0">Cube → Bowl</button>
+            <button type="button" id="droid-tab-can" role="tab" aria-selected="false" aria-controls="droid-panel-can" tabindex="-1">Can → Mug</button>
+            <button type="button" id="droid-tab-banana" role="tab" aria-selected="false" aria-controls="droid-panel-banana" tabindex="-1">Banana → Bin</button>
+          </div>
+          <section class="droid-task-panel" id="droid-panel-cube" role="tabpanel" aria-labelledby="droid-tab-cube" tabindex="0" data-droid-panel>
+            <header class="droid-task-heading"><div><span>Scene 1 · seed 0</span><h4>Put the cube in the bowl</h4></div><p>Success <i>→</i> Success<small>Baseline / with reference</small></p></header>
+            <div class="droid-reference-row">
+              <figure class="droid-reference-card"><video data-manual-play muted playsinline preload="none" controls poster="assets/droid-sim/cube-to-bowl/retrieved_reference-poster.webp" aria-label="Cube task retrieved DROID reference, four seconds"><source src="assets/droid-sim/cube-to-bowl/retrieved_reference.mp4" type="video/mp4"></video><figcaption><span>Retrieved reference · one exterior view</span><strong>“Put the cube in the bowl”</strong></figcaption></figure>
+              <div class="droid-reference-note"><p class="panel-label">Query and reference</p><h5>The reference and query share an instruction.</h5><p>Inspect the four-second reference alongside the two rollouts to compare the cube’s motion and its placement relative to the bowl.</p><small>The displayed reference is one view of the four-second clip. The policy received three synchronized views.</small></div>
+            </div>
+            <div class="droid-pair-toolbar"><div><button type="button" data-droid-play>Play pair</button><button type="button" data-droid-restart>Restart pair</button></div><span data-droid-status role="status" aria-live="polite">Paused · aligned playback</span></div>
+            <div class="droid-rollout-pair">
+              <figure class="droid-rollout"><figcaption><strong>No warm-up</strong><span class="droid-outcome">Success</span></figcaption><div class="droid-camera-scroll" tabindex="0" aria-label="Baseline three camera views; scroll horizontally on small screens"><div class="droid-camera-labels"><span>External</span><span>Wrist</span><span>External 2</span></div><video data-droid-rollout data-manual-play muted playsinline preload="none" controls poster="assets/droid-sim/cube-to-bowl/baseline_rollout-poster.webp" aria-label="Cube to bowl baseline, three views"><source src="assets/droid-sim/cube-to-bowl/baseline_rollout.mp4" type="video/mp4"></video></div></figure>
+              <figure class="droid-rollout"><figcaption><strong>With retrieved reference</strong><span class="droid-outcome">Success</span></figcaption><div class="droid-camera-scroll" tabindex="0" aria-label="Reference-conditioned rollout three camera views; scroll horizontally on small screens"><div class="droid-camera-labels"><span>External</span><span>Wrist</span><span>External 2</span></div><video data-droid-rollout data-manual-play muted playsinline preload="none" controls poster="assets/droid-sim/cube-to-bowl/embed2icl_rollout-poster.webp" aria-label="Cube to bowl with retrieved reference, three views"><source src="assets/droid-sim/cube-to-bowl/embed2icl_rollout.mp4" type="video/mp4"></video></div></figure>
+            </div>
+          </section>
+          <section class="droid-task-panel" id="droid-panel-can" role="tabpanel" aria-labelledby="droid-tab-can" tabindex="0" data-droid-panel hidden>
+            <header class="droid-task-heading"><div><span>Scene 2 · seed 0</span><h4>Pick up the can and put it in the mug</h4></div><p>Failure <i>→</i> Failure<small>Baseline / with reference</small></p></header>
+            <div class="droid-reference-row">
+              <figure class="droid-reference-card"><video data-manual-play muted playsinline preload="none" controls poster="assets/droid-sim/can-to-mug/retrieved_reference-poster.webp" aria-label="Can task retrieved DROID reference, four seconds"><source src="assets/droid-sim/can-to-mug/retrieved_reference.mp4" type="video/mp4"></video><figcaption><span>Retrieved reference · one exterior view</span><strong>“Pick up the pen and put it in the cup”</strong></figcaption></figure>
+              <div class="droid-reference-note"><p class="panel-label">Query and reference</p><h5>Compare the requested and retrieved objects.</h5><p>The task asks for a can in a mug; the retrieved instruction describes a pen in a cup.</p><small>The displayed reference is one view of the four-second clip. The policy received three synchronized views.</small></div>
+            </div>
+            <div class="droid-pair-toolbar"><div><button type="button" data-droid-play>Play pair</button><button type="button" data-droid-restart>Restart pair</button></div><span data-droid-status role="status" aria-live="polite">Paused · aligned playback</span></div>
+            <div class="droid-rollout-pair">
+              <figure class="droid-rollout"><figcaption><strong>No warm-up</strong><span class="droid-outcome droid-failure">Failure</span></figcaption><div class="droid-camera-scroll" tabindex="0" aria-label="Baseline three camera views; scroll horizontally on small screens"><div class="droid-camera-labels"><span>External</span><span>Wrist</span><span>External 2</span></div><video data-droid-rollout data-manual-play muted playsinline preload="none" controls poster="assets/droid-sim/can-to-mug/baseline_rollout-poster.webp" aria-label="Can to mug baseline, three views"><source src="assets/droid-sim/can-to-mug/baseline_rollout.mp4" type="video/mp4"></video></div></figure>
+              <figure class="droid-rollout"><figcaption><strong>With retrieved reference</strong><span class="droid-outcome droid-failure">Failure</span></figcaption><div class="droid-camera-scroll" tabindex="0" aria-label="Reference-conditioned rollout three camera views; scroll horizontally on small screens"><div class="droid-camera-labels"><span>External</span><span>Wrist</span><span>External 2</span></div><video data-droid-rollout data-manual-play muted playsinline preload="none" controls poster="assets/droid-sim/can-to-mug/embed2icl_rollout-poster.webp" aria-label="Can to mug with retrieved reference, three views"><source src="assets/droid-sim/can-to-mug/embed2icl_rollout.mp4" type="video/mp4"></video></div></figure>
+            </div>
+          </section>
+          <section class="droid-task-panel" id="droid-panel-banana" role="tabpanel" aria-labelledby="droid-tab-banana" tabindex="0" data-droid-panel hidden>
+            <header class="droid-task-heading"><div><span>Scene 3 · seed 0</span><h4>Put the banana in the bin</h4></div><p>Success <i>→</i> Success<small>Baseline / with reference</small></p></header>
+            <div class="droid-reference-row">
+              <figure class="droid-reference-card"><video data-manual-play muted playsinline preload="none" controls poster="assets/droid-sim/banana-to-bin/retrieved_reference-poster.webp" aria-label="Banana task retrieved DROID reference, four seconds"><source src="assets/droid-sim/banana-to-bin/retrieved_reference.mp4" type="video/mp4"></video><figcaption><span>Retrieved reference · one exterior view</span><strong>“Put the banana in the box”</strong></figcaption></figure>
+              <div class="droid-reference-note"><p class="panel-label">Query and reference</p><h5>A placement reference from another scene.</h5><p>The reference describes placing a banana in a box. The simulation task uses a bin; both displayed rollouts end successfully.</p><small>The displayed reference is one view of the four-second clip. The policy received three synchronized views.</small></div>
+            </div>
+            <div class="droid-pair-toolbar"><div><button type="button" data-droid-play>Play pair</button><button type="button" data-droid-restart>Restart pair</button></div><span data-droid-status role="status" aria-live="polite">Paused · aligned playback</span></div>
+            <div class="droid-rollout-pair">
+              <figure class="droid-rollout"><figcaption><strong>No warm-up</strong><span class="droid-outcome">Success</span></figcaption><div class="droid-camera-scroll" tabindex="0" aria-label="Baseline three camera views; scroll horizontally on small screens"><div class="droid-camera-labels"><span>External</span><span>Wrist</span><span>External 2</span></div><video data-droid-rollout data-manual-play muted playsinline preload="none" controls poster="assets/droid-sim/banana-to-bin/baseline_rollout-poster.webp" aria-label="Banana to bin baseline, three views"><source src="assets/droid-sim/banana-to-bin/baseline_rollout.mp4" type="video/mp4"></video></div></figure>
+              <figure class="droid-rollout"><figcaption><strong>With retrieved reference</strong><span class="droid-outcome">Success</span></figcaption><div class="droid-camera-scroll" tabindex="0" aria-label="Reference-conditioned rollout three camera views; scroll horizontally on small screens"><div class="droid-camera-labels"><span>External</span><span>Wrist</span><span>External 2</span></div><video data-droid-rollout data-manual-play muted playsinline preload="none" controls poster="assets/droid-sim/banana-to-bin/embed2icl_rollout-poster.webp" aria-label="Banana to bin with retrieved reference, three views"><source src="assets/droid-sim/banana-to-bin/embed2icl_rollout.mp4" type="video/mp4"></video></div></figure>
+            </div>
+          </section>
+          <p class="droid-mobile-hint">Swipe across each rollout to inspect all three camera views.</p>
+          <p class="droid-pairing-note">Selected qualitative rollouts with the same scene, seed 0, and camera layout. Playback aligns video time; terminal outcomes are shown for each clip. These examples are not used to estimate success rates.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter evolve-section" id="embed2evolve">
+      <div class="shell">
+        <div class="section-heading" data-reveal>
+          <div><p class="kicker">05 · Embed2Evolve</p><h2>Higher task success, with fewer policy tokens.</h2></div>
+          <p>Embed2Evolve grows task-local context from experience and execution feedback, then freezes the selected harness for testing while GPT and embedding weights remain fixed.</p>
+        </div>
+
+        <div class="panel-split evolve-intro" data-reveal>
+          <div class="panel-copy">
+            <p class="panel-label">Embedding-guided context evolution</p>
+            <h3>Experience becomes task-local memory.</h3>
+            <p>Each completed attempt becomes retrievable context. The context harness evolves how the policy accesses that memory; it does not evolve policy weights. The selected harness improves final task success while reducing test-time policy context.</p>
+          </div>
+          <figure class="recorded-evolve-story"><header><span>Two-Robot Stack Cube</span><small>Recorded test rollout · seed 40</small></header><div><span><img src="assets/figures-real/overview-evolve-start.webp" alt="Actual initial state of the Two-Robot Stack Cube rollout" loading="lazy"><small>Start</small></span><b aria-hidden="true">→</b><span><img src="assets/figures-real/overview-evolve-final.webp" alt="Actual final state of the same Two-Robot Stack Cube rollout" loading="lazy"><small>End</small></span></div><figcaption>Real experience supplies the context; the policy weights stay fixed.</figcaption></figure>
+        </div>
+
+        <div class="evolve-summary" data-reveal aria-label="Embed2Evolve task-success and test-time-efficiency results">
+          <article class="evolve-kpi-card evolve-success-card">
+            <header><span>Task success</span><small>All final test rollouts</small></header>
+            <div class="evolve-kpi-value"><strong>68%</strong><span>+44 pp vs. Direct</span></div>
+            <div class="evolve-kpi-route" aria-label="Task success rises from 24 percent with GPT-6 Astra Direct to 68 percent with Embed2Evolve">
+              <span><small>GPT-6 Astra Direct</small><b>24%</b></span><i aria-hidden="true">→</i><span class="featured"><small>Embed2Evolve</small><b>68%</b></span>
+            </div>
+            <p>Five ManiSkill tasks with 20 fresh matched initializations per task and condition.</p>
+          </article>
+
+          <article class="evolve-kpi-card evolve-token-card">
+            <header><span>Policy tokens / rollout</span><small>All final test rollouts</small></header>
+            <div class="evolve-kpi-value"><strong>0.518M</strong><span>−43.7% vs. Direct</span></div>
+            <div class="evolve-kpi-route" aria-label="Mean policy tokens per test rollout fall from 0.921 million with GPT-6 Astra Direct to 0.518 million with Embed2Evolve">
+              <span><small>GPT-6 Astra Direct</small><b>0.921M</b></span><i aria-hidden="true">→</i><span class="featured"><small>Embed2Evolve</small><b>0.518M</b></span>
+            </div>
+            <p>Means include successful and failed test rollouts; development rollouts are excluded.</p>
+          </article>
+
+          <section class="evolve-matched-proof" aria-label="Matched embedding-model comparison after independently repeating evolution">
+            <header><span>Matched evolved harnesses</span><small>Replace only the embedding model and repeat evolution</small></header>
+            <div class="evolve-proof-route">
+              <article><span>Evolve + Omni-Embed-Nemotron-3B</span><strong>33% success</strong><b>≈2.531M tokens / rollout</b></article>
+              <i aria-hidden="true">→</i>
+              <article class="featured"><span>Embed2Evolve</span><strong>68% success</strong><b>0.518M tokens / rollout</b></article>
+            </div>
+            <div class="evolve-proof-deltas"><strong>+35 pp task success</strong><strong>−79.5% policy tokens</strong></div>
+          </section>
+
+          <section class="evolve-paired-efficiency" aria-label="Efficiency on matched initializations where both Direct and Embed2Evolve succeed">
+            <header><span>Shared-success efficiency</span><small>19 matched initializations where both methods succeed</small></header>
+            <div><span><strong>−64.1%</strong><small>policy decisions</small></span><span><strong>−41.4%</strong><small>task execution time</small></span><span><strong>1.90×</strong><small>mean task-wise speedup</small></span></div>
+          </section>
+
+          <p class="evolve-summary-scope">Success and token results use all final test rollouts, including failures. Decision and time results use only shared-success pairs and are reported separately.</p>
+        </div>
+
+        <details class="technical-details" id="evolve-protocol" data-reveal>
+          <summary><span><small>How context evolves</small><strong>Develop the memory, then freeze the harness</strong></span><span class="detail-summary-note">Development loop &amp; deployment protocol</span></summary>
+          <div class="details-body">
+        <figure class="native-figure evolve-figure" aria-label="Embed2Evolve development loop and frozen deployment loop">
+          <div class="evolve-paper-framework">
+            <section class="evolve-paper-lane development-lane">
+              <header><strong>Development</strong><span>Memory + context recipe evolve</span></header>
+              <div class="evolve-development-flow">
+                <article class="evolve-collect-node"><strong>Collect rollouts</strong><div class="rollout-glyph real-rollout-frames"><img src="assets/figures-real/evolve-collect-early.webp" alt="Recorded rollout frame from the original Evolve framework" loading="lazy"><img src="assets/figures-real/evolve-collect-late.webp" alt="Second recorded rollout frame from the original Evolve framework" loading="lazy"></div><small>All outcomes</small></article>
+                <b class="evolve-arrow" aria-hidden="true"></b>
+                <article class="evolve-index-node"><strong>Robota-Embed</strong><span>Vision · Text · Action</span><div class="evolve-vector" aria-label="anchor embedding vector"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>Index anchors</small></article>
+                <b class="evolve-arrow" aria-hidden="true"></b>
+                <article class="evolve-context-node"><strong>Evolve context</strong><div><span class="memory-bank"><i></i><i></i><i></i></span><b>Memory M</b><span class="recipe-sliders"><i></i><i></i><i></i></span><b>Recipe θ</b></div></article>
+                <b class="evolve-arrow" aria-hidden="true"></b>
+                <article class="evolve-select-node"><strong>Evaluate + select</strong><ol><li><b>1</b>Success</li><li><b>2</b>Control ticks</li><li><b>3</b>Execution time</li></ol><div class="mobile-development-loop" aria-hidden="true"><i>↶</i><span>Collect, index, and test the next recipe</span></div></article>
+                <b class="evolve-arrow" aria-hidden="true"></b>
+                <article class="evolve-freeze-node"><strong>Freeze</strong><div class="lock-glyph" aria-hidden="true"><i></i></div><small>M* + θ*</small></article>
+              </div>
+              <div class="development-return-loop"><span>Collect, index, and test the next recipe</span><i aria-hidden="true"></i></div>
+            </section>
+            <div class="frozen-state-bridge" aria-label="The selected memory and recipe are held fixed for deployment"><span>M* + θ*</span><i aria-hidden="true"></i></div>
+            <section class="evolve-paper-lane deployment-lane">
+              <header><strong>Frozen deployment</strong><span>GPT and embedding weights stay fixed</span></header>
+              <div class="evolve-deployment-flow">
+                <article class="evolve-query-node"><strong>Current query</strong><div><img src="assets/figures-real/evolve-current-query.webp" alt="Actual RGB query image from the paper's Evolve framework" loading="lazy"><span><b>RGB</b><b>Text</b><b>Action</b></span></div></article>
+                <b class="evolve-arrow" aria-hidden="true"></b>
+                <article class="evolve-memory-node"><b class="frozen-harness-input">Frozen M* + θ*</b><strong>Robota-Embed</strong><div class="past-context-glyph real-rollout-frames"><img src="assets/figures-real/evolve-past-context-1.webp" alt="First recorded past-context image used in the paper framework" loading="lazy"><img src="assets/figures-real/evolve-past-context-2.webp" alt="Second recorded past-context image used in the paper framework" loading="lazy"></div><small>Past context</small></article>
+                <b class="evolve-arrow" aria-hidden="true"></b>
+                <article class="evolve-gpt-node"><strong>GPT-6 Astra</strong><span>Current views + state</span><small>Recent own history</small></article>
+                <b class="evolve-arrow" aria-hidden="true"></b>
+                <article class="evolve-control-node"><strong>EEF poses + gripper</strong><span>Fixed IK / controller</span><small>Robot execution</small><img class="real-execution-frame" src="assets/figures-real/evolve-robot-execution.webp" alt="Recorded robot execution image from the paper framework" loading="lazy"></article>
+              </div>
+              <div class="deployment-return-loop"><span>Fresh observations + feedback</span><i aria-hidden="true"></i></div>
+            </section>
+          </div>
+          <figcaption>All scene images come from the author's experiment report and match the paper figure. Development grows memory and optimizes its use; testing fixes both. GPT-6 Astra proposes end-effector poses and gripper commands for a fixed controller, while GPT and embedding weights remain fixed.</figcaption>
+        </figure>
+
+          </div>
+        </details>
+
+        <div class="evolve-viewer" data-reveal>
+          <div class="comparison-heading">
+            <span>Same-seed rollout viewer</span>
+            <p>Seed 40 is used for every task and condition, selected before observing outcomes.</p>
+          </div>
+          <div class="evolve-task-tabs" role="tablist" aria-label="ManiSkill task" data-evolve-tabs>
+            <button type="button" role="tab" id="task-two-robot" aria-controls="panel-two-robot" aria-selected="true" tabindex="0">Two-Robot Stack</button>
+            <button type="button" role="tab" id="task-poke" aria-controls="panel-poke" aria-selected="false" tabindex="-1">Poke Cube</button>
+            <button type="button" role="tab" id="task-stack" aria-controls="panel-stack" aria-selected="false" tabindex="-1">Stack Cube</button>
+            <button type="button" role="tab" id="task-lift" aria-controls="panel-lift" aria-selected="false" tabindex="-1">Lift Peg</button>
+            <button type="button" role="tab" id="task-pull" aria-controls="panel-pull" aria-selected="false" tabindex="-1">Pull Cube</button>
+          </div>
+
+          <section class="evolve-task-panel" id="panel-two-robot" role="tabpanel" aria-labelledby="task-two-robot">
+            <div class="task-rate-strip"><strong>TwoRobotStackCube-v1</strong><span>Direct 25%</span><span>Random history 15%</span><span class="best">Embed2Evolve 85%</span></div>
+            <div class="media-carousel three-up evolve-media" data-carousel tabindex="0" aria-label="Two-Robot Stack Cube seed 40 comparison">
+              <article class="media-card"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-two-robot-direct-poster.webp"><source src="assets/evolve-two-robot-direct.mp4" type="video/mp4"></video><span class="media-badge">Direct</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Direct rollout</strong></div></article>
+              <article class="media-card"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-two-robot-random-poster.webp"><source src="assets/evolve-two-robot-random.mp4" type="video/mp4"></video><span class="media-badge">Random history · RGB only</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Random-history rollout</strong></div></article>
+              <article class="media-card featured"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-two-robot-physis-poster.webp"><source src="assets/evolve-two-robot-physis.mp4" type="video/mp4"></video><span class="media-badge">Embed2Evolve</span></div><div class="media-copy"><span>Seed 40 · success</span><strong>Retrieved-memory rollout</strong></div></article>
+            </div>
+          </section>
+
+          <section class="evolve-task-panel" id="panel-poke" role="tabpanel" aria-labelledby="task-poke" hidden>
+            <div class="task-rate-strip"><strong>PokeCube-v1</strong><span>Direct 45%</span><span>Random history 15%</span><span class="best">Embed2Evolve 80%</span></div>
+            <div class="media-carousel three-up evolve-media" data-carousel tabindex="0" aria-label="Poke Cube seed 40 comparison">
+              <article class="media-card"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-poke-direct-poster.webp"><source src="assets/evolve-poke-direct.mp4" type="video/mp4"></video><span class="media-badge">Direct</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Direct rollout</strong></div></article>
+              <article class="media-card"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-poke-random-poster.webp"><source src="assets/evolve-poke-random.mp4" type="video/mp4"></video><span class="media-badge">Random history · RGB only</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Random-history rollout</strong></div></article>
+              <article class="media-card featured"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-poke-physis-poster.webp"><source src="assets/evolve-poke-physis.mp4" type="video/mp4"></video><span class="media-badge">Embed2Evolve</span></div><div class="media-copy"><span>Seed 40 · success</span><strong>Retrieved-memory rollout</strong></div></article>
+            </div>
+          </section>
+
+          <section class="evolve-task-panel" id="panel-stack" role="tabpanel" aria-labelledby="task-stack" hidden>
+            <div class="task-rate-strip"><strong>StackCube-v1</strong><span>Direct 10%</span><span>Random history 20%</span><span class="best">Embed2Evolve 60%</span></div>
+            <div class="media-carousel three-up evolve-media" data-carousel tabindex="0" aria-label="Stack Cube seed 40 comparison">
+              <article class="media-card"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-stack-direct-poster.webp"><source src="assets/evolve-stack-direct.mp4" type="video/mp4"></video><span class="media-badge">Direct</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Direct rollout</strong></div></article>
+              <article class="media-card"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-stack-random-poster.webp"><source src="assets/evolve-stack-random.mp4" type="video/mp4"></video><span class="media-badge">Random history · RGB only</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Random-history rollout</strong></div></article>
+              <article class="media-card featured"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-stack-physis-poster.webp"><source src="assets/evolve-stack-physis.mp4" type="video/mp4"></video><span class="media-badge">Embed2Evolve</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Retrieved-memory rollout</strong></div></article>
+            </div>
+          </section>
+
+          <section class="evolve-task-panel" id="panel-lift" role="tabpanel" aria-labelledby="task-lift" hidden>
+            <div class="task-rate-strip"><strong>LiftPegUpright-v1</strong><span>Direct 30%</span><span>Random history 40%</span><span class="best">Embed2Evolve 65%</span></div>
+            <div class="media-carousel three-up evolve-media" data-carousel tabindex="0" aria-label="Lift Peg Upright seed 40 comparison">
+              <article class="media-card"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-lift-peg-direct-poster.webp"><source src="assets/evolve-lift-peg-direct.mp4" type="video/mp4"></video><span class="media-badge">Direct</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Direct rollout</strong></div></article>
+              <article class="media-card"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-lift-peg-random-poster.webp"><source src="assets/evolve-lift-peg-random.mp4" type="video/mp4"></video><span class="media-badge">Random history · RGB only</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Random-history rollout</strong></div></article>
+              <article class="media-card featured"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-lift-peg-physis-poster.webp"><source src="assets/evolve-lift-peg-physis.mp4" type="video/mp4"></video><span class="media-badge">Embed2Evolve</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Retrieved-memory rollout</strong></div></article>
+            </div>
+          </section>
+
+          <section class="evolve-task-panel" id="panel-pull" role="tabpanel" aria-labelledby="task-pull" hidden>
+            <div class="task-rate-strip"><strong>PullCubeTool-v1</strong><span>Direct 10%</span><span>Random history 10%</span><span class="best">Embed2Evolve 50%</span></div>
+            <div class="media-carousel three-up evolve-media" data-carousel tabindex="0" aria-label="Pull Cube with Tool seed 40 comparison">
+              <article class="media-card"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-pull-tool-direct-poster.webp"><source src="assets/evolve-pull-tool-direct.mp4" type="video/mp4"></video><span class="media-badge">Direct</span></div><div class="media-copy"><span>Seed 40 · success</span><strong>Direct rollout</strong></div></article>
+              <article class="media-card"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-pull-tool-random-poster.webp"><source src="assets/evolve-pull-tool-random.mp4" type="video/mp4"></video><span class="media-badge">Random history · RGB only</span></div><div class="media-copy"><span>Seed 40 · failure</span><strong>Random-history rollout</strong></div></article>
+              <article class="media-card featured"><div class="media-frame portrait-video"><video muted loop playsinline preload="none" controls poster="assets/evolve-pull-tool-physis-poster.webp"><source src="assets/evolve-pull-tool-physis.mp4" type="video/mp4"></video><span class="media-badge">Embed2Evolve</span></div><div class="media-copy"><span>Seed 40 · success</span><strong>Retrieved-memory rollout</strong></div></article>
+            </div>
+          </section>
+
+          <p class="viewer-note">Task rates aggregate test seeds 40–59. The displayed videos use the same predeclared seed 40 regardless of whether a method succeeds; the random-history videos are the corrected RGB-only condition, and playback duration is not wall-clock execution time.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="paper-section" id="paper">
+      <div class="shell">
+        <div class="paper-card" data-reveal>
+          <div class="paper-copy">
+            <p class="kicker">Technical report</p>
+            <h2>Build robot context from physical experience.</h2>
+            <p>Robota-Embed unifies vision, language, and native action for predictive experience retrieval, then applies the same representation to robot in-context learning and context evolution.</p>
+            <div class="paper-actions"><a class="pill pill-primary" href="assets/robota-embed-technical-report.pdf">Read the report <span aria-hidden="true">↗</span></a></div>
+          </div>
+          <div class="paper-art recorded-paper-art" aria-hidden="true"><img src="assets/figures-real/overview-human.webp" alt="" loading="lazy"><img src="assets/figures-real/overview-icl-real-robot.webp" alt="" loading="lazy"><img src="assets/figures-real/overview-evolve-final.webp" alt="" loading="lazy"><span>Experience → retrieval → action</span></div>
+        </div>
+        <details class="technical-details release-details" id="release-details">
+          <summary><span><small>Project resources</small><strong>Report available · code and artifact releases pending</strong></span><span class="detail-summary-note">Release status</span></summary>
+          <div class="details-body release-grid">
+            <article><h3>Technical report</h3><p>The complete report, with methods, evaluation, and supplementary analysis.</p><a href="assets/robota-embed-technical-report.pdf">Download PDF ↗</a></article>
+            <article><h3>Code</h3><p>Research code release is pending. The project website source is available in <a href="https://github.com/yunzeliu/robota-embed" class="repo-name">yunzeliu/robota-embed</a>.</p></article>
+            <article><h3>Model &amp; benchmark</h3><p>Download links will be added when the artifacts are released.</p></article>
+            <article><h3>Citation</h3><p>The citation entry will be added once the public paper record is available.</p></article>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <details class="shell media-attribution"><summary>Media sources and credits</summary><p>Recorded experience is drawn from <a href="https://github.com/apple/ml-egodex">EgoDex</a>, <a href="https://droid-dataset.github.io/">DROID</a>, <a href="https://libero-project.github.io/">LIBERO</a>, and <a href="https://huggingface.co/datasets/x-humanoid-robomind/RoboMIND">RoboMIND</a>, with credit to their authors and contributors. DROID excerpts are resized under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Query crops and four-second sampled retrieval previews were prepared for this comparison.</p><p>DROID-Sim videos use DreamZero, sim-evals, and DROID-sim-environments. Fast-WAM footage comes from the authors’ <a href="https://huggingface.co/datasets/wushr-lance/VLA2Vec">VLA2Vec archive</a>. Simulation and real-robot rollouts are labeled separately; the opening montage is an edited overview.</p></details>
+    <div class="shell footer-inner">
+      <a class="wordmark footer-mark" href="#top"><span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Robota-Embed</span></a>
+      <p>Unified VLA Embeddings for Robot In-Context Learning and Evolution</p>
+      <a href="assets/robota-embed-technical-report.pdf">Technical Report ↗</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,153 @@
+.contents-nav {
+  --contents-lift: 0px;
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: calc(20px + env(safe-area-inset-bottom) + var(--contents-lift));
+  z-index: 29;
+  font-size: 13px;
+}
+
+.contents-nav__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-width: 110px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid rgba(148, 216, 45, 0.36);
+  border-radius: 999px;
+  background: rgba(15, 19, 13, 0.94);
+  color: #eef5e8;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(16px);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.contents-nav__toggle:hover,
+.contents-nav__toggle[aria-expanded="true"] {
+  border-color: var(--green-bright, #94d82d);
+  background: #202c16;
+}
+
+.contents-nav__icon {
+  display: grid;
+  gap: 3px;
+  width: 14px;
+  color: var(--green-bright, #94d82d);
+}
+
+.contents-nav__icon i {
+  display: block;
+  height: 1px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+.contents-nav__icon i:nth-child(2) { width: 10px; }
+.contents-nav__icon i:nth-child(3) { width: 12px; }
+
+.contents-nav__panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  width: min(276px, calc(100vw - 32px));
+  max-height: calc(100svh - 140px - var(--contents-lift));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 15px 10px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  background: rgba(16, 19, 15, 0.98);
+  box-shadow: 0 16px 55px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  scrollbar-width: thin;
+  scrollbar-color: #415832 transparent;
+}
+
+.contents-nav__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 10px 11px;
+  color: var(--muted, #a5aaa3);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contents-nav__position {
+  color: var(--green-bright, #94d82d);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0;
+}
+
+.contents-nav__list {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contents-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 36px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #d3d8cf;
+  font-size: 12px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.contents-nav__number {
+  flex: 0 0 26px;
+  color: #8a9483;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+}
+
+.contents-nav__item--nested .contents-nav__link { padding-left: 22px; }
+.contents-nav__item--nested .contents-nav__number { flex-basis: 25px; }
+.contents-nav__link:hover { color: #fff; background: rgba(255, 255, 255, 0.055); }
+.contents-nav__link[aria-current="location"] {
+  border-color: rgba(148, 216, 45, 0.24);
+  color: #ecffd9;
+  background: rgba(118, 185, 0, 0.13);
+}
+.contents-nav__link[aria-current="location"] .contents-nav__number { color: var(--green-bright, #94d82d); }
+.contents-nav__link:focus-visible { outline-offset: -2px; }
+
+/* At this width the closed control fits entirely outside the 1180px page shell. */
+@media (min-width: 1440px) {
+  .contents-nav { top: 50%; bottom: auto; transform: translateY(-50%); }
+  .contents-nav__panel {
+    right: calc(100% + 12px);
+    top: 50%;
+    bottom: auto;
+    max-height: calc(100svh - 132px);
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 560px) {
+  .contents-nav { right: max(12px, env(safe-area-inset-right)); bottom: calc(14px + env(safe-area-inset-bottom) + var(--contents-lift)); }
+  .contents-nav__toggle { min-width: 98px; min-height: 44px; gap: 8px; padding-inline: 12px; font-size: 11px; }
+  .contents-nav__panel { max-height: calc(100svh - 128px - var(--contents-lift)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contents-nav__toggle { transition: none; }
+}
+
+@media print { .contents-nav { display: none; } }

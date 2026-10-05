@@ -1,0 +1,38 @@
+/* Verified aggregate comparisons alongside the task's qualitative videos. */
+.evolve-task-metrics { min-width: 0; }
+.evolve-task-metrics-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; margin-bottom: 16px; }
+.evolve-task-metrics-heading h3 { margin: 0; font-size: 1.08rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.02em; }
+.evolve-task-metrics-heading > span { color: var(--muted); font-size: 0.72rem; }
+.evolve-task-metric-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.evolve-task-metric-card { min-width: 0; padding: 18px 20px 13px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255, 255, 255, 0.018); }
+.evolve-task-metric-card > header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 14px; }
+.evolve-task-metric-card h4 { margin: 0; font-size: 0.81rem; font-weight: 700; }
+.evolve-task-metric-delta { color: var(--muted); font-size: 0.71rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.evolve-task-metric-delta.is-positive { color: var(--green-bright); }
+.evolve-task-metric-card dl { display: grid; gap: 15px; margin: 19px 0 0; }
+.evolve-task-metric-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 7px 12px; align-items: baseline; }
+.evolve-task-metric-row dt { min-width: 0; color: #c3c9c0; font-size: 0.77rem; }
+.evolve-task-metric-row dd { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: 7px; margin: 0; color: var(--text); font-variant-numeric: tabular-nums; }
+.evolve-task-metric-row dd strong { font-size: 1.05rem; font-weight: 700; }
+.evolve-task-metric-row dd small { color: var(--muted); font-size: 0.67rem; }
+.evolve-task-metric-row.is-featured dt, .evolve-task-metric-row.is-featured dd strong { color: var(--green-bright); }
+.evolve-task-metric-track { grid-column: 1 / -1; height: 6px; overflow: hidden; border-radius: 4px; background: rgba(255, 255, 255, 0.06); }
+.evolve-task-metric-track span { display: block; height: 100%; border-radius: inherit; background: #727c71; }
+.evolve-task-metric-row.is-featured .evolve-task-metric-track span { background: var(--green); }
+.evolve-task-metric-axis { margin: 13px 0 0; color: var(--muted-2); font-size: 0.63rem; }
+.evolve-task-metrics-scope { margin: 13px 0 0; color: var(--muted); font-size: 0.71rem; line-height: 1.55; }
+.evolve-task-metrics-control { margin: 5px 0 0; color: var(--muted); font-size: 0.69rem; line-height: 1.55; }
+
+@media (max-width: 700px) {
+  .evolve-task-metric-grid { grid-template-columns: 1fr; gap: 10px; }
+  .evolve-task-metric-card { padding: 15px 16px 12px; }
+  .evolve-task-metric-card > header { align-items: flex-start; }
+  .evolve-task-metric-card dl { margin-top: 15px; }
+}
+
+@media (prefers-contrast: more) {
+  .evolve-task-metric-card { border-color: var(--line-strong); }
+  .evolve-task-metric-row dt, .evolve-task-metric-row dd small,
+  .evolve-task-metric-axis, .evolve-task-metrics-scope,
+  .evolve-task-metrics-control, .evolve-task-metrics-heading > span { color: var(--text); }
+}

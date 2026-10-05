@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="226" viewBox="0 0 320 226" role="img" aria-labelledby="action-title action-desc">
+<title id="action-title">Recorded normalized action — LIBERO</title>
+<desc id="action-desc">Ten normalized native-action input coordinates for the recorded LIBERO query at frame 31, time 3.1 seconds. Positive bars extend above zero; negative bars extend below zero. The coordinate indices are CSV field suffixes, not embedding dimensions. Exact values: action_00: 0.0660066605; action_01: -0.410256445; action_02: -0.297142863; action_03: 0.901876569; action_04: -0.423126042; action_05: 0.431891918; action_06: 0.419030428; action_07: 0.957214952; action_08: -0.0921571851; action_09: -1.</desc>
+<metadata>{&quot;source&quot;:&quot;assets/retrieval/libero-hard-distractor/query_action_model_input.csv&quot;,&quot;source_sha256&quot;:&quot;842afe37821890459fc8ba37a1486bd27d427f9cfd6fb28a293c2b63a2dcea26&quot;,&quot;frame_index&quot;:31,&quot;timestamp_seconds&quot;:3.1,&quot;coordinate_fields&quot;:[&quot;action_00&quot;,&quot;action_01&quot;,&quot;action_02&quot;,&quot;action_03&quot;,&quot;action_04&quot;,&quot;action_05&quot;,&quot;action_06&quot;,&quot;action_07&quot;,&quot;action_08&quot;,&quot;action_09&quot;],&quot;values&quot;:[0.0660066605,-0.410256445,-0.297142863,0.901876569,-0.423126042,0.431891918,0.419030428,0.957214952,-0.0921571851,-1.0],&quot;symmetric_axis_extent&quot;:1,&quot;rendering&quot;:&quot;Signed coordinate bars; no smoothing, aggregation, or clipping.&quot;}</metadata>
+<rect width="320" height="226" rx="16" fill="#121412"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="16" y="27" font-size="18" font-weight="600" fill="#f3f5f1">Normalized action</text>
+<text x="16" y="48" font-size="12" fill="#a5aaa3">LIBERO query · t = 3.1 s</text>
+<line x1="39" x2="306" y1="76" y2="76" stroke="#303530" stroke-width="1"/>
+<text x="29" y="80" text-anchor="end" font-size="11" fill="#a5aaa3">+1</text>
+<line x1="39" x2="306" y1="131" y2="131" stroke="#8b9189" stroke-width="1"/>
+<text x="29" y="135" text-anchor="end" font-size="11" fill="#a5aaa3">0</text>
+<line x1="39" x2="306" y1="186" y2="186" stroke="#303530" stroke-width="1"/>
+<text x="29" y="190" text-anchor="end" font-size="11" fill="#a5aaa3">-1</text>
+<rect x="44.8500" y="127.36963367" width="15" height="3.63036633" rx="2" fill="#76b900" data-coordinate="action_00" data-value="0.0660066605">
+<title>action_00: 0.0660066605</title></rect>
+<text x="52.3500" y="204" text-anchor="middle" font-size="11" fill="#f3f5f1">00</text>
+<rect x="71.5500" y="131.00000000" width="15" height="22.56410448" rx="2" fill="#48d7ce" data-coordinate="action_01" data-value="-0.410256445">
+<title>action_01: -0.410256445</title></rect>
+<text x="79.0500" y="204" text-anchor="middle" font-size="11" fill="#f3f5f1">01</text>
+<rect x="98.2500" y="131.00000000" width="15" height="16.34285746" rx="2" fill="#48d7ce" data-coordinate="action_02" data-value="-0.297142863">
+<title>action_02: -0.297142863</title></rect>
+<text x="105.7500" y="204" text-anchor="middle" font-size="11" fill="#f3f5f1">02</text>
+<rect x="124.9500" y="81.39678871" width="15" height="49.60321130" rx="2" fill="#76b900" data-coordinate="action_03" data-value="0.901876569">
+<title>action_03: 0.901876569</title></rect>
+<text x="132.4500" y="204" text-anchor="middle" font-size="11" fill="#f3f5f1">03</text>
+<rect x="151.6500" y="131.00000000" width="15" height="23.27193231" rx="2" fill="#48d7ce" data-coordinate="action_04" data-value="-0.423126042">
+<title>action_04: -0.423126042</title></rect>
+<text x="159.1500" y="204" text-anchor="middle" font-size="11" fill="#f3f5f1">04</text>
+<rect x="178.3500" y="107.24594451" width="15" height="23.75405549" rx="2" fill="#76b900" data-coordinate="action_05" data-value="0.431891918">
+<title>action_05: 0.431891918</title></rect>
+<text x="185.8500" y="204" text-anchor="middle" font-size="11" fill="#f3f5f1">05</text>
+<rect x="205.0500" y="107.95332646" width="15" height="23.04667354" rx="2" fill="#76b900" data-coordinate="action_06" data-value="0.419030428">
+<title>action_06: 0.419030428</title></rect>
+<text x="212.5500" y="204" text-anchor="middle" font-size="11" fill="#f3f5f1">06</text>
+<rect x="231.7500" y="78.35317764" width="15" height="52.64682236" rx="2" fill="#76b900" data-coordinate="action_07" data-value="0.957214952">
+<title>action_07: 0.957214952</title></rect>
+<text x="239.2500" y="204" text-anchor="middle" font-size="11" fill="#f3f5f1">07</text>
+<rect x="258.4500" y="131.00000000" width="15" height="5.06864518" rx="2" fill="#48d7ce" data-coordinate="action_08" data-value="-0.0921571851">
+<title>action_08: -0.0921571851</title></rect>
+<text x="265.9500" y="204" text-anchor="middle" font-size="11" fill="#f3f5f1">08</text>
+<rect x="285.1500" y="131.00000000" width="15" height="55.00000000" rx="2" fill="#48d7ce" data-coordinate="action_09" data-value="-1">
+<title>action_09: -1</title></rect>
+<text x="292.6500" y="204" text-anchor="middle" font-size="11" fill="#f3f5f1">09</text>
+<text x="172" y="220" text-anchor="middle" font-size="10" fill="#a5aaa3">Action coordinate</text>
+</g>
+</svg>

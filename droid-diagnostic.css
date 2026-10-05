@@ -1,0 +1,61 @@
+.droid-diagnostic { scroll-margin-top: 100px; }
+.droid-diagnostic-intro { margin-top: 28px; max-width: 900px; }
+.droid-diagnostic-intro h3 { margin: 12px 0 16px; font-size: clamp(1.9rem, 3.7vw, 3.2rem); letter-spacing: -.045em; line-height: 1.07; }
+.droid-diagnostic-intro > p:not(.panel-label) { margin: 0; color: var(--muted); font-size: .9rem; }
+.droid-protocol-tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 20px 0 0; }
+.droid-protocol-tags span { padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); font-size: .66rem; }
+.droid-task-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 18px; }
+.droid-task-tabs button, .droid-pair-toolbar button { min-height: 43px; padding: 0 16px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: transparent; font: inherit; font-size: .76rem; font-weight: 700; cursor: pointer; }
+.droid-task-tabs button:hover, .droid-pair-toolbar button:hover { color: var(--text); border-color: var(--line-strong); }
+.droid-task-tabs button[aria-selected="true"], .droid-pair-toolbar button:first-child { color: #10130c; background: var(--green); border-color: var(--green); }
+.droid-diagnostic button:focus-visible, .droid-camera-scroll:focus-visible, .droid-task-panel:focus-visible { outline: 2px solid var(--green-bright); outline-offset: 4px; }
+.droid-task-panel { min-width: 0; padding: clamp(18px, 3vw, 32px); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); }
+.droid-task-panel[hidden] { display: none; }
+.droid-task-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 26px; }
+.droid-task-heading > div > span { color: var(--muted-2); font-size: .7rem; }
+.droid-task-heading h4 { margin: 7px 0 0; font-size: clamp(1.3rem, 2.5vw, 1.85rem); font-weight: 650; letter-spacing: -.035em; line-height: 1.2; }
+.droid-task-heading > p { flex: 0 0 auto; margin: 0; color: var(--text); font-size: .9rem; font-weight: 650; text-align: right; }
+.droid-task-heading > p i { padding: 0 8px; color: var(--muted-2); font-style: normal; }
+.droid-task-heading small { display: block; margin-top: 5px; color: var(--muted-2); font-size: .59rem; font-weight: 400; }
+.droid-reference-row { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(20px, 3vw, 38px); align-items: center; }
+.droid-reference-card { min-width: 0; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #080908; }
+.droid-reference-card video { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #080908; }
+.droid-reference-card figcaption { padding: 13px 16px 16px; }
+.droid-reference-card figcaption span { display: block; color: var(--muted-2); font-size: .62rem; }
+.droid-reference-card figcaption strong { display: block; margin-top: 7px; font-size: .85rem; line-height: 1.35; font-weight: 600; }
+.droid-reference-note h5 { margin: 10px 0 13px; font-size: clamp(1.15rem, 2.1vw, 1.65rem); line-height: 1.15; letter-spacing: -.025em; }
+.droid-reference-note > p:not(.panel-label) { margin: 0; color: var(--muted); font-size: .81rem; }
+.droid-reference-note small { display: block; margin-top: 14px; color: var(--muted-2); font-size: .65rem; }
+.droid-pair-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding: 25px 0 17px; }
+.droid-pair-toolbar > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.droid-pair-toolbar > span { color: var(--muted-2); font-size: .66rem; }
+.droid-rollout-pair { display: grid; gap: 15px; }
+.droid-rollout { min-width: 0; margin: 0; border: 1px solid var(--line); border-radius: 12px; background: #080908; overflow: hidden; }
+.droid-rollout figcaption { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 13px 16px; }
+.droid-rollout figcaption strong { font-size: .82rem; font-weight: 650; }
+.droid-outcome { flex: 0 0 auto; padding: 3px 8px; border-radius: 4px; background: rgba(118, 185, 0, .12); color: #b9d889; font-size: .62rem; }
+.droid-failure { background: rgba(222, 158, 102, .1); color: #d4b298; }
+.droid-camera-scroll { overflow-x: auto; scrollbar-color: #4f5948 #0c0e0b; scrollbar-width: thin; }
+.droid-camera-labels { display: grid; grid-template-columns: repeat(3, 1fr); color: var(--muted-2); font-size: .6rem; text-align: center; }
+.droid-camera-labels span { padding: 5px 0; border-top: 1px solid var(--line); border-right: 1px solid var(--line); }
+.droid-camera-labels span:last-child { border-right: 0; }
+.droid-camera-scroll video { display: block; width: 100%; max-width: none; aspect-ratio: 960 / 180; object-fit: contain; background: #080908; }
+.droid-pairing-note { margin: 16px 2px 0; color: var(--muted-2); font-size: .67rem; line-height: 1.65; }
+.droid-mobile-hint { display: none; }
+@media (max-width: 760px) {
+  .droid-reference-row { grid-template-columns: 1fr; }
+  .droid-reference-card { max-width: 480px; }
+  .droid-task-heading { flex-direction: column; gap: 14px; }
+  .droid-task-heading > p { text-align: left; }
+  .droid-task-heading small { display: inline-block; margin-left: 10px; }
+}
+@media (max-width: 600px) {
+  .droid-task-panel { padding: 17px; }
+  .droid-task-tabs { gap: 6px; }
+  .droid-task-tabs button { padding: 0 11px; font-size: .68rem; }
+  .droid-camera-scroll video, .droid-camera-labels { min-width: 600px; }
+  .droid-rollout figcaption { padding: 12px; gap: 8px; }
+  .droid-rollout figcaption strong { font-size: .73rem; }
+  .droid-mobile-hint { display: block; margin: 12px 2px 0; color: var(--muted); font-size: .68rem; }
+  .droid-task-heading small { display: block; margin-left: 0; }
+}
