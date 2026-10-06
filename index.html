@@ -18,7 +18,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=robota-r">
   <link rel="preload" href="assets/hero-montage-mobile.mp4" as="video" type="video/mp4" media="(max-width: 560px)">
   <link rel="preload" href="assets/hero-montage-desktop.mp4" as="video" type="video/mp4" media="(min-width: 561px)">
-  <link rel="stylesheet" href="styles.css?v=robota-r">
+  <link rel="stylesheet" href="styles.css?v=hero-results-1">
   <link rel="stylesheet" href="retrieval-viewer.css">
   <link rel="stylesheet" href="droid-diagnostic.css">
   <link rel="stylesheet" href="real-figures.css">
@@ -71,16 +71,42 @@
           <p class="eyebrow"><span></span> NVIDIA Technical Report</p>
           <h1>Robota-Embed</h1>
           <p class="hero-subtitle">Unified VLA Embeddings for <br>Robot In-Context Learning and Evolution</p>
+          <p class="hero-conclusion">Action-aware retrieval makes recorded experience useful for robot context.</p>
+          <div class="hero-results" aria-label="Key experimental results">
+            <a class="hero-result" href="#benchmark-comparison">
+              <span class="hero-result-kicker">Retrieval</span>
+              <strong class="hero-result-value">47.33%</strong>
+              <span class="hero-result-label">Clip-level R@1</span>
+              <span class="hero-result-compare">+22.09 pp vs Gemini Embedding 2</span>
+              <span class="hero-result-scope">Four-source average</span>
+            </a>
+            <a class="hero-result" href="#real-robot">
+              <span class="hero-result-kicker">Real-robot ICL</span>
+              <strong class="hero-result-value">87.50%</strong>
+              <span class="hero-result-label">Split Cup task progress</span>
+              <span class="hero-result-compare">66.67% without Embed2ICL</span>
+              <span class="hero-result-scope">Fast-WAM · 12 rollouts per condition</span>
+            </a>
+            <a class="hero-result" href="#embed2evolve">
+              <span class="hero-result-kicker">Embed2Evolve</span>
+              <strong class="hero-result-value">68%</strong>
+              <span class="hero-result-label">Task success</span>
+              <span class="hero-result-compare">24% with Direct</span>
+              <span class="hero-result-scope">Five ManiSkill simulation tasks</span>
+            </a>
+            <a class="hero-result" href="#embed2evolve">
+              <span class="hero-result-kicker">Embed2Evolve</span>
+              <strong class="hero-result-value">−43.7%</strong>
+              <span class="hero-result-label">Policy tokens per test rollout</span>
+              <span class="hero-result-compare">vs 0.921M with Direct</span>
+              <span class="hero-result-scope">Mean across all test rollouts</span>
+            </a>
+          </div>
           <div class="hero-actions">
             <a class="pill pill-primary" href="assets/robota-embed-technical-report.pdf">Technical Report <span aria-hidden="true">↗</span></a>
             <a class="pill" href="#retrieval-comparison">Explore retrieval <span aria-hidden="true">↓</span></a>
             <a class="pill" href="#release-details">Code &amp; resources <span aria-hidden="true">↓</span></a>
           </div>
-        </div>
-        <div class="hero-storyline" aria-label="From physical experience to robot adaptation">
-          <span><i>01</i><b>Physical experience</b><small>Human + teleoperated</small></span>
-          <span><i>02</i><b>Embed2ICL</b><small>Retrieved robot context</small></span>
-          <span><i>03</i><b>Embed2Evolve</b><small>Memory-guided evolution</small></span>
         </div>
         <a class="hero-down" href="#paper-meta" aria-label="Continue to paper details"><span></span></a>
       </div>
