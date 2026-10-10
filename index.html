@@ -91,14 +91,14 @@
               <span class="hero-result-kicker">Embed2Evolve</span>
               <strong class="hero-result-value">68%</strong>
               <span class="hero-result-label">Task success</span>
-              <span class="hero-result-compare">24% with Direct</span>
+              <span class="hero-result-compare">24% Direct · 33% evolved Omni</span>
               <span class="hero-result-scope">Five ManiSkill simulation tasks</span>
             </a>
             <a class="hero-result" href="#embed2evolve">
               <span class="hero-result-kicker">Embed2Evolve</span>
               <strong class="hero-result-value">−43.7%</strong>
               <span class="hero-result-label">Policy tokens per test rollout</span>
-              <span class="hero-result-compare">vs 0.921M with Direct</span>
+              <span class="hero-result-compare">−79.5% vs evolved Omni</span>
               <span class="hero-result-scope">Mean across all test rollouts</span>
             </a>
           </div>
@@ -684,6 +684,31 @@
           <figure class="recorded-evolve-story"><header><span>Two-Robot Stack Cube</span><small>Recorded test rollout · seed 40</small></header><div><span><img src="assets/figures-real/overview-evolve-start.webp" alt="Actual initial state of the Two-Robot Stack Cube rollout" loading="lazy"><small>Start</small></span><b aria-hidden="true">→</b><span><img src="assets/figures-real/overview-evolve-final.webp" alt="Actual final state of the same Two-Robot Stack Cube rollout" loading="lazy"><small>End</small></span></div><figcaption>Real experience supplies the context; the policy weights stay fixed.</figcaption></figure>
         </div>
 
+        <figure class="evolve-visible-method" data-reveal aria-labelledby="evolve-visible-title">
+          <header><span>Method · Embed2Evolve</span><h3 id="evolve-visible-title">Develop the context. Freeze the best harness. Test fresh.</h3></header>
+          <div class="evolve-visible-lane">
+            <div class="evolve-visible-lane-label"><strong>01 / Development</strong><span>Memory and context recipe evolve; policy and embedding weights stay fixed.</span></div>
+            <div class="evolve-visible-steps">
+              <div><small>Collect</small><strong>Completed rollouts</strong><span>Successes and failures</span></div>
+              <div><small>Index</small><strong>Robota-Embed</strong><span>Vision · text · native action</span></div>
+              <div><small>Evolve</small><strong>Memory M + recipe θ</strong><span>How to retrieve and use context</span></div>
+              <div><small>Evaluate</small><strong>Success · ticks · time</strong><span>Repeat the development loop</span></div>
+              <div class="evolve-visible-freeze"><small>Select</small><strong>Freeze M* + θ*</strong><span>Best task-local harness</span></div>
+            </div>
+          </div>
+          <div class="evolve-visible-transfer"><span>Selected memory + recipe carry into fresh final tests</span><b aria-hidden="true">↓</b></div>
+          <div class="evolve-visible-lane test-lane">
+            <div class="evolve-visible-lane-label"><strong>02 / Frozen testing</strong><span>No test-time memory or recipe evolution.</span></div>
+            <div class="evolve-visible-steps">
+              <div><small>Observe</small><strong>Current RGB + task + action</strong><span>Fresh test rollout</span></div>
+              <div><small>Retrieve</small><strong>Recorded past context</strong><span>From frozen M* via θ*</span></div>
+              <div><small>Decide</small><strong>Fixed GPT-6 Astra</strong><span>Views, state, own recent history</span></div>
+              <div><small>Execute</small><strong>EEF poses + gripper</strong><span>Fixed controller; observe again</span></div>
+            </div>
+          </div>
+          <figcaption>Development changes only task-local memory and its context recipe. Final success and policy-token numbers use fresh tests after that selection is frozen.</figcaption>
+        </figure>
+
         <div class="evolve-summary" data-reveal aria-label="Embed2Evolve task-success and test-time-efficiency results">
           <article class="evolve-kpi-card evolve-success-card">
             <header><span>Task success</span><small>All final test rollouts</small></header>
@@ -704,7 +729,7 @@
           </article>
 
           <section class="evolve-matched-proof" aria-label="Matched embedding-model comparison after independently repeating evolution">
-            <header><span>Matched evolved harnesses</span><small>Replace only the embedding model and repeat evolution</small></header>
+            <header><span>Matched evolved harnesses</span><small>Same protocol · independently evolve each context system</small></header>
             <div class="evolve-proof-route">
               <article><span>Evolve + Omni-Embed-Nemotron-3B</span><strong>33% success</strong><b>≈2.531M tokens / rollout</b></article>
               <i aria-hidden="true">→</i>
